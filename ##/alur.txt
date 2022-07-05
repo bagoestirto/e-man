@@ -1,0 +1,6 @@
+perawatan -> tolak -> end
+	-> approve -> diperbaiki
+
+lokasi -> lokasi aset yg sedang digunakan pegawai
+
+pinjam -> dipinjam pegawai sementara
