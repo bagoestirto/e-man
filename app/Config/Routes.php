@@ -37,6 +37,10 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Pages::index');
 
+$routes->get('/komik/create', 'Komik::create');
+$routes->get('/muser/l_user', 'Muser::l_user');
+$routes->get('/mpegawai/l_pegawai', 'Mpegawai::l_pegawai');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

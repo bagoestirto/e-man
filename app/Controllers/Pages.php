@@ -6,6 +6,10 @@ class Pages extends BaseController
 {
     public function index()
     {
-        return view('layout/home');
+        $data = [
+            'side' => "home",
+            'tittle' => "Dashboard"
+        ];
+        return view('layout/home', $data);
     }
 }

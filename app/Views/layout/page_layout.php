@@ -13,7 +13,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href=" <?= base_url('/assets/images/smk.png'); ?>" />
     <!-- Custom CSS -->
-    <link href="<?= base_url('assets/libs/flot/css/float-chart.css'); ?>" rel="stylesheet" />
+    <link href="<?= base_url('/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css'); ?>" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="<?= base_url('dist/css/style.min.css'); ?>" rel="stylesheet" />
 </head>
@@ -56,16 +56,16 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title"><?= $tittle; ?></h4>
                         <div class="ms-auto text-end">
-                            <nav aria-label="breadcrumb">
+                            <!--<nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
                                         Library
                                     </li>
                                 </ol>
-                            </nav>
+                            </nav>-->
                         </div>
                     </div>
                 </div>
@@ -117,14 +117,14 @@
     <!--This page JavaScript -->
     <!-- <script src="../dist/js/pages/dashboards/dashboard1.js"></script> -->
     <!-- Charts js Files -->
-    <script src="<?= base_url('assets/libs/flot/excanvas.js'); ?>"></script>
-    <script src="<?= base_url('assets/libs/flot/jquery.flot.js'); ?>"></script>
-    <script src="<?= base_url('assets/libs/flot/jquery.flot.pie.js'); ?>"></script>
-    <script src="<?= base_url('assets/libs/flot/jquery.flot.time.js'); ?>"></script>
-    <script src="<?= base_url('assets/libs/flot/jquery.flot.stack.js'); ?>"></script>
-    <script src="<?= base_url('assets/libs/flot/jquery.flot.crosshair.js'); ?>"></script>
-    <script src="<?= base_url('assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js'); ?>"></script>
-    <script src="<?= base_url('dist/js/pages/chart/chart-page-init.js'); ?>"></script>
+    <script src="<?= base_url('/assets/extra-libs/DataTables/datatables.min.js'); ?>"></script>
+    <script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $("#zero_config").DataTable();
+    </script>
+
 </body>
 
 </html>

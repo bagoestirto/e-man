@@ -4,3 +4,16 @@ perawatan -> tolak -> end
 lokasi -> lokasi aset yg sedang digunakan pegawai
 
 pinjam -> dipinjam pegawai sementara
+
+
+MASTERING
+- tb_sumberdana
++ tb_pegawai
++ tb_user
++ tb_barang
+
+TRANSAKSI
++ tb_peminjaman
++ tb_perawatan (+ status, + tgl_update)
++ tb_lokasi
++ tb_pengahapusan (dihapus & dipakai habis)

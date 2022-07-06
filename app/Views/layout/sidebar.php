@@ -5,7 +5,21 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="pt-4">
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
+                    <a class="sidebar-link waves-effect waves-dark <?= ($side == 'home') ? "active" : ""; ?> sidebar-link" href="<?= base_url('/'); ?>" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Mastering </span></a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a href="<?= base_url('/muser/l_user'); ?>" class="sidebar-link"><i class="mdi mdi-account-key"></i><span class="hide-menu"> User </span></a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="<?= base_url('/mpegawai/l_pegawai'); ?>" class="sidebar-link"><i class="mdi mdi-account-box"></i><span class="hide-menu"> Pegawai </span></a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="<?= base_url('/mbarang/l_barang'); ?>" class="sidebar-link"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"> Barang </span></a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Charts</span></a>
