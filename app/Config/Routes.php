@@ -21,6 +21,8 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
+$routes->setAutoRoute(true);
+
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
@@ -40,6 +42,9 @@ $routes->get('/', 'Pages::index');
 $routes->get('/komik/create', 'Komik::create');
 $routes->get('/muser/l_user', 'Muser::l_user');
 $routes->get('/mpegawai/l_pegawai', 'Mpegawai::l_pegawai');
+$routes->get('/mpegawai/c_pegawai', 'Mpegawai::c_pegawai');
+$routes->delete('/mpegawai/(:num)', 'Mpegawai::delete/$1');
+$routes->get('/mpegawai/(:any)', 'Home::noFound');
 
 /*
  * --------------------------------------------------------------------

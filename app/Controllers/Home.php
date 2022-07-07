@@ -8,4 +8,8 @@ class Home extends BaseController
     {
         return view('welcome_message');
     }
+    public function noFound()
+    {
+        throw new \CodeIgniter\Exceptions\PageNotFoundException('Halaman tidak ditemukan');
+    }
 }
