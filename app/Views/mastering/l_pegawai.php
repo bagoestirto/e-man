@@ -39,7 +39,7 @@
                                     <td><?= $p['alamat']; ?></td>
                                     <td><?= $p['nomor_telepon']; ?></td>
                                     <td>
-                                        <a class="btn btn-success btn-sm text-white" title="Edit" href="<?= base_url('/mpegawai/' . $p['slug']); ?>">
+                                        <a class="btn btn-success btn-sm text-white" title="Edit" href="<?= base_url('/mpegawai/edit/' . $p['slug']); ?>">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         <form action="/mpegawai/<?= $p['kode_pegawai']; ?>" method="POST" class="d-inline">
