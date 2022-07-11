@@ -124,7 +124,14 @@
          ****************************************/
         $("#zero_config").DataTable();
     </script>
-
+    <script src="<?= base_url('/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'); ?>"></script>
+    <script>
+        jQuery("#datepicker-autoclose").datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: "yyyy-mm-dd",
+        });
+    </script>
 </body>
 
 </html>

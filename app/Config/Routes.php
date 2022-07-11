@@ -41,11 +41,15 @@ $routes->get('/', 'Pages::index');
 
 //$routes->get('/komik/create', 'Komik::create');
 $routes->get('/muser/l_user', 'Muser::l_user');
+
 $routes->get('/mpegawai/l_pegawai', 'Mpegawai::l_pegawai');
 $routes->get('/mpegawai/c_pegawai', 'Mpegawai::c_pegawai');
 $routes->get('/mpegawai/edit/(:segment)', 'Mpegawai::edit/$1');
 $routes->delete('/mpegawai/(:num)', 'Mpegawai::delete/$1');
 $routes->get('/mpegawai/(:any)', 'Home::noFound');
+
+$routes->get('/mbarang/l_barang', 'Mbarang::l_barang');
+
 
 /*
  * --------------------------------------------------------------------
