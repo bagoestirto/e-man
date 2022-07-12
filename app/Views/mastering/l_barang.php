@@ -25,6 +25,7 @@
                                 <th>Kode Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Stok Barang</th>
+                                <th>Jenis Barang</th>
                                 <th>Merk</th>
                                 <th>Tipe</th>
                                 <th>Kode Sumberdana</th>
@@ -43,6 +44,7 @@
                                     <td><?= $p['kode_barang']; ?></td>
                                     <td><?= $p['nama_barang']; ?></td>
                                     <td><?= $p['stok_barang']; ?></td>
+                                    <td><?= $p['jenis_barang']; ?></td>
                                     <td><?= $p['merk']; ?></td>
                                     <td><?= $p['type']; ?></td>
                                     <td><?= $p['kode_sumberdana']; ?></td>
@@ -54,7 +56,7 @@
                                         <a class="btn btn-success btn-sm text-white" title="Edit" href="<?= base_url('/mbarang/edit/' . $p['slug_barang']); ?>">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <form action="/mbarang/<?= $p['slug_barang']; ?>" method="POST" class="d-inline">
+                                        <form action="/mbarang/<?= $p['id_barang']; ?>" method="POST" class="d-inline">
                                             <?= csrf_field(); ?>
                                             <input type="hidden" name="_method" value="DELETE">
                                             <button type="submit" class="btn btn-danger btn-sm text-white" tittle="Del" onclick="return confirm('Apakah anda yakin?')"><i class="fas fa-trash-alt"></i></button>

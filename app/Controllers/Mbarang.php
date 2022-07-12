@@ -36,113 +36,113 @@ class Mbarang extends BaseController
         return view('mastering/c_barang', $data);
     }
 
-    /*public function s_pegawai()
+    public function s_barang()
     {
         if (!$this->validate([
-            'kpeg' => [
-                'rules' => 'required|is_unique[tb_pegawai.kode_pegawai]',
+            'kbar' => [
+                'rules' => 'required|is_unique[tb_barang.kode_barang]',
                 'errors' => [
-                    'required' => 'Kode Pegawai tidak boleh kosong.',
-                    'is_unique' => 'Kode Pegawai sudah terdaftar.'
+                    'required' => 'Kode Barang tidak boleh kosong.',
+                    'is_unique' => 'Kode Barang sudah terdaftar.'
                 ]
             ],
-            'npeg' => [
-                'rules' => 'required|is_unique[tb_pegawai.nama_pegawai]',
+            'harga' => [
+                'rules' => 'numeric',
                 'errors' => [
-                    'required' => 'Nama Pegawai tidak boleh kosong.',
-                    'is_unique' => 'Nama Pegawai sudah terdaftar.'
+                    'numeric' => 'Harga hanya boleh diisi dengan angka'
                 ]
             ]
 
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/mpegawai/c_pegawai')->withInput()->with('validation', $validation);
+            return redirect()->to('/mbarang/c_barang')->withInput()->with('validation', $validation);
         }
 
-        //dd($this->request->getVar());
-        $slug = url_title($this->request->getVar('npeg'), '-', true);
-        //echo "<br>" . $slug . "<br>" . $this->request->getVar('kpeg') . "<br>" . $this->request->getVar('npeg') . "<br>" . $this->request->getVar('alamat') . "<br>" . $this->request->getVar('notelp');
+        $sensor = array('/', '`');
+        $slug_barang = str_replace($sensor, '-', $this->request->getVar('kbar'));
+        //echo "<br>" . $this->request->getVar('kbar') . "<br>" . $this->request->getVar('kpeg') . "<br>" . $this->request->getVar('npeg') . "<br>" . $this->request->getVar('alamat') . "<br>" . $this->request->getVar('notelp');
 
-        $this->pegawaiModel->insert([
-            'kode_pegawai' => $this->request->getVar('kpeg'),
-            'nama_pegawai' => $this->request->getVar('npeg'),
-            'slug' => $slug,
-            'alamat' => $this->request->getVar('alamat'),
-            'nomor_telepon' => $this->request->getVar('notelp')
+        $this->barangModel->insert([
+            'kode_barang' => $this->request->getVar('kbar'),
+            'slug_barang' => str_replace($sensor, '-', $this->request->getVar('kbar')),
+            'nama_barang' => $this->request->getVar('nbar'),
+            'stok_barang' => $this->request->getVar('stok'),
+            'jenis_barang' => $this->request->getVar('jbar'),
+            'merk' => $this->request->getVar('merk'),
+            'type' => $this->request->getVar('type'),
+            'kode_sumberdana' => $this->request->getVar('ksum'),
+            'tgl_pembelian' => $this->request->getVar('tgl_beli'),
+            'satuan' => $this->request->getVar('satuan'),
+            'kondisi' => $this->request->getVar('kondisi'),
+            'harga' => $this->request->getVar('harga')
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
-        return redirect()->to(base_url('/mpegawai/l_pegawai'));
+        return redirect()->to(base_url('/mbarang/l_barang'));
     }
 
-    public function delete($kode_pegawai)
+    public function delete($id_barang)
     {
-        $this->pegawaiModel->delete($kode_pegawai);
+        $this->barangModel->delete($id_barang);
         session()->setFlashdata('pesan', 'Data berhasil dihapus.');
-        return redirect()->to('/mpegawai/l_pegawai');
+        return redirect()->to('/mbarang/l_barang');
     }
 
     public function edit($slug)
     {
         //session();// pindahkan ke base controller
         $data = [
-            'side' => "c_pegawai",
-            'tittle' => "Edit Pegawai",
+            'side' => "e_barang",
+            'tittle' => "Edit Barang",
             'validation' => \Config\Services::validation(),
-            'pegawai' => $this->pegawaiModel->getPegawai($slug)
+            'barang' => $this->barangModel->getBarang($slug)
         ];
-        return view('mastering/e_pegawai', $data);
+        return view('mastering/e_barang', $data);
     }
 
-    public function update($kode_pegawai)
+    public function update($id_barang)
     {
-        $data_lama = $this->pegawaiModel->getPegawai($this->request->getVar('slug'));
+        $data_lama = $this->barangModel->getBarang($this->request->getVar('slug_barang'));
 
-        if ($data_lama['kode_pegawai'] == $this->request->getVar('kpeg')) {
-            $rule_judul = 'required';
+        if ($data_lama['kode_barang'] == $this->request->getVar('kbar')) {
+            $rule_kode = 'required';
         } else {
-            $rule_judul = 'required|is_unique[tb_pegawai.kode_pegawai]';
-        }
-
-        if ($data_lama['nama_pegawai'] == $this->request->getVar('npeg')) {
-            $rule_nama = 'required';
-        } else {
-            $rule_nama = 'required|is_unique[tb_pegawai.nama_pegawai]';
+            $rule_kode = 'required|is_unique[tb_barang.kode_barang]';
         }
 
         if (!$this->validate([
-            'kpeg' => [
-                'rules' => $rule_judul,
+            'kbar' => [
+                'rules' => $rule_kode,
                 'errors' => [
-                    'required' => 'Kode Pegawai tidak boleh kosong.',
-                    'is_unique' => 'Kode Pegawai sudah terdaftar.'
-                ]
-            ],
-            'npeg' => [
-                'rules' => $rule_nama,
-                'errors' => [
-                    'required' => 'Nama Pegawai tidak boleh kosong.',
-                    'is_unique' => 'Nama Pegawai sudah terdaftar.'
+                    'required' => 'Kode Barang tidak boleh kosong.',
+                    'is_unique' => 'Kode Barang sudah terdaftar.'
                 ]
             ]
-
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/mpegawai/edit/' . $this->request->getVar('slug'))->withInput()->with('validation', $validation);
+            return redirect()->to('/mbarang/edit/' . $this->request->getVar('slug_barang'))->withInput()->with('validation', $validation);
         }
-        $slug = url_title($this->request->getVar('npeg'), '-', true);
-        //echo "<br>" . $slug . "<br>" . $this->request->getVar('kpeg') . "<br>" . $this->request->getVar('npeg') . "<br>" . $this->request->getVar('alamat') . "<br>" . $this->request->getVar('notelp');
 
-        $this->pegawaiModel->save([
-            'kode_pegawai' => $kode_pegawai,
-            //'kode_pegawai' => $this->request->getVar('kpeg'),
-            'nama_pegawai' => $this->request->getVar('npeg'),
-            'slug' => $slug,
-            'alamat' => $this->request->getVar('alamat'),
-            'nomor_telepon' => $this->request->getVar('notelp')
+        $sensor = array('/', '`');
+        $slug_barang = str_replace($sensor, '-', $this->request->getVar('kbar'));
+
+        $this->barangModel->save([
+            'id_barang' => $id_barang,
+            'kode_barang' => $this->request->getVar('kbar'),
+            'slug_barang' => $slug_barang,
+            'nama_barang' => $this->request->getVar('nbar'),
+            'stok_barang' => $this->request->getVar('stok'),
+            'jenis_barang' => $this->request->getVar('jbar'),
+            'merk' => $this->request->getVar('merk'),
+            'type' => $this->request->getVar('type'),
+            'kode_sumberdana' => $this->request->getVar('ksum'),
+            'tgl_pembelian' => $this->request->getVar('tgl_beli'),
+            'satuan' => $this->request->getVar('satuan'),
+            'kondisi' => $this->request->getVar('kondisi'),
+            'harga' => $this->request->getVar('harga')
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil diubah.');
-        return redirect()->to(base_url('/mpegawai/l_pegawai'));
-    }*/
+        return redirect()->to(base_url('/mbarang/l_barang'));
+    }
 }

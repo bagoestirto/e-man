@@ -46,9 +46,13 @@ $routes->get('/mpegawai/l_pegawai', 'Mpegawai::l_pegawai');
 $routes->get('/mpegawai/c_pegawai', 'Mpegawai::c_pegawai');
 $routes->get('/mpegawai/edit/(:segment)', 'Mpegawai::edit/$1');
 $routes->delete('/mpegawai/(:num)', 'Mpegawai::delete/$1');
-$routes->get('/mpegawai/(:any)', 'Home::noFound');
 
 $routes->get('/mbarang/l_barang', 'Mbarang::l_barang');
+$routes->get('/mbarang/c_barang', 'Mbarang::c_barang');
+$routes->get('/mbarang/edit/(:segment)', 'Mbarang::edit/$1');
+$routes->delete('/mbarang/(:num)', 'Mbarang::delete/$1');
+
+$routes->get('/mpegawai/(:any)', 'Home::noFound');
 
 
 /*
