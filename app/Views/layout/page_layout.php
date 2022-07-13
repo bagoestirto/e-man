@@ -132,6 +132,19 @@
             format: "yyyy-mm-dd",
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".add-more").click(function() {
+                var html = $(".copy").html();
+                $(".before-here").before(html);
+            });
+
+            // saat tombol remove dklik control group akan dihapus 
+            $("body").on("click", ".remove", function() {
+                $(this).parents(".form-group").remove();
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -11,7 +11,7 @@
  Target Server Version : 100422
  File Encoding         : 65001
 
- Date: 12/07/2022 16:51:06
+ Date: 13/07/2022 16:49:39
 */
 
 SET NAMES utf8mb4;
@@ -64,6 +64,13 @@ CREATE TABLE `tb_detail_lokasi`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of tb_detail_lokasi
+-- ----------------------------
+INSERT INTO `tb_detail_lokasi` VALUES ('11', 'KGG/BOS/2021');
+INSERT INTO `tb_detail_lokasi` VALUES ('11', 'LTP/BOS/2021');
+INSERT INTO `tb_detail_lokasi` VALUES ('11', 'CPURE/BOS/2021');
+
+-- ----------------------------
 -- Table structure for tb_detail_peminjaman
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_detail_peminjaman`;
@@ -89,11 +96,27 @@ CREATE TABLE `tb_detail_perawatan`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_lokasi`;
 CREATE TABLE `tb_lokasi`  (
-  `kode_lokasi` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `kode_pegawai` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `nama_lokasi` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `titik_koordinat` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `kode_lokasi` int(15) NOT NULL,
+  `kode_pegawai` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nama_lokasi` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `titik_koordinat` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`kode_lokasi`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_lokasi
+-- ----------------------------
+INSERT INTO `tb_lokasi` VALUES (1, '197112202007011017', 'KANTOR', '-7.7540617600031245, 113.53666330714829');
+INSERT INTO `tb_lokasi` VALUES (2, '197109042005012009', 'LAB KOMPUTER 1', '-7.7540318610599535, 113.53654528995966');
+INSERT INTO `tb_lokasi` VALUES (3, '196810112007012019', 'LAB KOMPUTER 2', '-7.754044485058443, 113.53649499854404');
+INSERT INTO `tb_lokasi` VALUES (4, '197112252008012018', 'PERPUSTAKAAN', '-7.754015250535052, 113.53654193719863');
+INSERT INTO `tb_lokasi` VALUES (5, '197609292008012017', 'X AKL 1', '-7.754005948640824, 113.53635954699803');
+INSERT INTO `tb_lokasi` VALUES (6, '198306042009031004', 'X AKL 2', '-7.753952794955551, 113.53635015926712');
+INSERT INTO `tb_lokasi` VALUES (7, '197211242006041007', 'BENGKEL', '-7.754073055158884, 113.53670354028077');
+INSERT INTO `tb_lokasi` VALUES (8, '197605142011012006', 'X TKRO 1', '-7.754006613061852, 113.53644001326299');
+INSERT INTO `tb_lokasi` VALUES (9, '197806182010012007', 'X TKRO 2', '-7.754017243798085, 113.53641050896583');
+INSERT INTO `tb_lokasi` VALUES (10, '198505122010012020', 'X TKRO 3', '-7.7540404985326425, 113.53641386172687');
+INSERT INTO `tb_lokasi` VALUES (11, ' 197609292008012017', 'asd', 'asd');
 
 -- ----------------------------
 -- Table structure for tb_pegawai
