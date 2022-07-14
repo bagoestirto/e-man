@@ -11,7 +11,7 @@
  Target Server Version : 100422
  File Encoding         : 65001
 
- Date: 13/07/2022 16:49:39
+ Date: 14/07/2022 17:01:06
 */
 
 SET NAMES utf8mb4;
@@ -69,6 +69,9 @@ CREATE TABLE `tb_detail_lokasi`  (
 INSERT INTO `tb_detail_lokasi` VALUES ('11', 'KGG/BOS/2021');
 INSERT INTO `tb_detail_lokasi` VALUES ('11', 'LTP/BOS/2021');
 INSERT INTO `tb_detail_lokasi` VALUES ('11', 'CPURE/BOS/2021');
+INSERT INTO `tb_detail_lokasi` VALUES ('10', 'KGG/BOS/2021');
+INSERT INTO `tb_detail_lokasi` VALUES ('10', 'LTP/BOS/2021');
+INSERT INTO `tb_detail_lokasi` VALUES ('10', 'CPURE/BOS/2021');
 
 -- ----------------------------
 -- Table structure for tb_detail_peminjaman
