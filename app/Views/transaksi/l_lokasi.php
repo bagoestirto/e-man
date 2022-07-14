@@ -22,50 +22,38 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode Barang</th>
-                                <th>Nama Barang</th>
-                                <th>Stok Barang</th>
-                                <th>Jenis Barang</th>
-                                <th>Merk</th>
-                                <th>Tipe</th>
-                                <th>Kode Sumberdana</th>
-                                <th>Tgl Pembelian</th>
-                                <th>Satuan</th>
-                                <th>Kondisi</th>
-                                <th>Harga</th>
+                                <th>Kode Lokasi</th>
+                                <th>Nama Pegawai</th>
+                                <th>Nama Lokasi</th>
+                                <th>Titik Koordinat</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i = 1; ?>
+                            <?php
+                            $i = 1;
+                            //$before = null;
+                            ?>
                             <?php foreach ($lokasi as $p) : ?>
+                                <?php
+                                // if (($p['kode_lokasi']) != $before) :
+                                ?>
                                 <tr>
                                     <td><?= $i++; ?></td>
-                                    <td><?= $p->kode_lokasi; ?></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><?= $p['kode_lokasi']; ?></td>
+                                    <td><?= $p['nama_pegawai']; ?></td>
+                                    <td><?= $p['nama_lokasi']; ?></td>
+                                    <td><?= $p['titik_koordinat']; ?></td>
                                     <td>
-                                        <a class="btn btn-success btn-sm text-white" title="Edit" href="<?php // echo base_url('/mbarang/edit/' . $p['slug_barang']); 
-                                                                                                        ?>">
+                                        <a class="btn btn-success btn-sm text-white" title="Edit" href="<?= base_url('/mtrans/det_lokasi/' . $p['kode_lokasi']); ?>">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <form action="/mbarang/<? //echo $p['id_barang']; 
-                                                                ?>" method="POST" class="d-inline">
-                                            <?= csrf_field(); ?>
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-danger btn-sm text-white" tittle="Del" onclick="return confirm('Apakah anda yakin?')"><i class="fas fa-trash-alt"></i></button>
-                                        </form>
-
                                     </td>
                                 </tr>
+                                <?php
+                                // endif;
+                                //$before = $p['kode_lokasi'];
+                                ?>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
