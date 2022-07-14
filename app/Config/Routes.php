@@ -53,6 +53,7 @@ $routes->get('/mbarang/edit/(:segment)', 'Mbarang::edit/$1');
 $routes->delete('/mbarang/(:num)', 'Mbarang::delete/$1');
 
 $routes->get('/mtrans/t_lokasi', 'Mtrans::l_lokasi');
+$routes->get('getState', 'Dropdown::getState');
 
 $routes->get('/mpegawai/(:any)', 'Home::noFound');
 

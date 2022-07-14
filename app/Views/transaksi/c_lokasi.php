@@ -3,7 +3,7 @@
 <?= $this->section('content'); ?>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="card">
             <form class="form-horizontal" action="<?= base_url('/mtrans/s_lokasi'); ?>" method="POST">
                 <?= csrf_field(); ?>
@@ -40,14 +40,18 @@
 
                     <div class="form-group row after-add-more">
                         <label for="nbar" class="col-sm-3 text-end control-label col-form-label">Nama Barang</label>
-                        <div class="col-sm-9">
-                            <select class="select2 form-select shadow-none <?= ($validation->hasError('nbar')) ? 'is-invalid' : ''; ?>" name="nbar[]" required>
-                                <option value="">Select</option>
+                        <div class="col-sm-3">
+                            <select class="opt-barang select2 form-select shadow-none" id="pbar[]" name="nbar[]" required>
+                                <option value="">Pilih Barang</option>
                                 <?php foreach ($barang as $bar) : ?>
-                                    <option value="<?= $bar['kode_barang'] ?>"><?= $bar['nama_barang']; ?></option>
+                                    <option onclick="getJumlah(<?= $bar['id_barang'] ?>, 1)" value="<?= $bar['id_barang'] ?>"><?= $bar['nama_barang']; ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <div class="invalid-feedback"><?= $validation->getError('nbar'); ?></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="select2 form-select shadow-none" id="qbar_1" name="qbar" required>
+
+                            </select>
                         </div>
                     </div>
 
@@ -68,14 +72,18 @@
             <div class="copy invisible">
                 <div class="form-group row">
                     <label for="nbar" class="col-sm-3 text-end control-label col-form-label">Nama Barang</label>
-                    <div class="col-sm-7">
-                        <select class="select2 form-select shadow-none <?= ($validation->hasError('nbar')) ? 'is-invalid' : ''; ?>" name="nbar[]" required>
-                            <option value="">Select</option>
+                    <div class="col-sm-3">
+                        <select class="select2 form-select shadow-none" id="pbar[]" name="nbar[]" required>
+                            <option value="">Pilih Barang</option>
                             <?php foreach ($barang as $bar) : ?>
-                                <option value="<?= $bar['kode_barang']; ?>"><?= $bar['nama_barang']; ?></option>
+                                <option value="<?= $bar['id_barang'] ?>"><?= $bar['nama_barang']; ?></option>
                             <?php endforeach; ?>
                         </select>
-                        <div class="invalid-feedback"><?= $validation->getError('nbar'); ?></div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="select2 form-select shadow-none" id="qbar[]" name="qbar[]" required>
+
+                        </select>
                     </div>
                     <button class="btn btn-danger remove col-sm-1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                 </div>

@@ -16,6 +16,7 @@
     <link href="<?= base_url('/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css'); ?>" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="<?= base_url('dist/css/style.min.css'); ?>" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -134,8 +135,26 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
+            // $(".add-more").click(function() {
+            //     var html = $(".copy").html();
+            //     $(".before-here").before(html);
+            // });
             $(".add-more").click(function() {
-                var html = $(".copy").html();
+                let count = document.getElementsByClassName("opt-barang").length + 1;
+                var html = '';
+                html += '<div class="form-group row"><label for="nbar" class="col-sm-3 text-end control-label col-form-label">Nama Barang</label>';
+                html += '<div class="col-sm-3">';
+                html += '<select class="opt-barang select2 form-select shadow-none" id="pbar[]" name="nbar[]" required>';
+                html += '<option value="">Pilih Barang</option><?php foreach ($barang as $bar) : ?>';
+                html += '<option onclick="getJumlah(<?= $bar['id_barang'] ?>, ' + count + ')" value="<?= $bar['id_barang'] ?>"><?= $bar['nama_barang']; ?></option><?php endforeach; ?>';
+                html += '</select>';
+                html += '</div>';
+                html += '<div class="col-sm-3">';
+                html += '<select class="select2 form-select shadow-none" id="qbar_' + count + '" name="qbar[]" required></select>';
+                html += '</div>';
+                html += '<button class="btn btn-danger remove col-sm-1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>';
+                html += '</div>';
+                // var html = $(".copy").html();
                 $(".before-here").before(html);
             });
 
@@ -145,6 +164,68 @@
             });
         });
     </script>
+    <script type=text/javascript>
+        // when country dropdown changes
+        function getJumlah(item, idx) {
+            if (item) {
+                $.ajax({
+                    type: "GET",
+                    url: "<?= base_url('getState') ?>",
+                    data: {
+                        id_barang: item
+                    },
+                    success: function(res) {
+                        var data = JSON.parse(res);
+                        if (res) {
+                            $(`#qbar_${idx}`).empty();
+                            $(`#qbar_${idx}`).append('<option>Jumlah Barang</option>');
+                            for (let i = 1; i < data.stok_barang; i++) {
+                                // console.log(i);
+                                $(`#qbar_${idx}`).append('<option value="' + i + '">' + i + '</option>');
+                            }
+                            // $.each(data, function(key, value) {
+                            //     $(`#qbar_${idx}`).append('<option value="' + value.stok_barang + '">' + value.stok_barang +
+                            //         '</option>');
+                            // });
+                        } else {
+                            $(`#qbar_${idx}`).empty();
+                        }
+                    }
+                });
+            } else {
+                $(`#qbar_${idx}`).empty();
+            }
+        }
+
+        $('#pbar').change(function() {
+            var idBarang = $(this).val();
+            if (idBarang) {
+                $.ajax({
+                    type: "GET",
+                    url: "<?= base_url('getState') ?>",
+                    data: {
+                        id_barang: idBarang
+                    },
+                    success: function(res) {
+                        var data = JSON.parse(res);
+                        if (res) {
+                            $("#qbar").empty();
+                            $("#qbar").append('<option>Jumlah Barang</option>');
+                            $.each(data, function(key, value) {
+                                $("#qbar").append('<option value="' + value.stok_barang + '">' + value.stok_barang +
+                                    '</option>');
+                            });
+                        } else {
+                            $("#qbar").empty();
+                        }
+                    }
+                });
+            } else {
+                $("#qbar").empty();
+            }
+        });
+    </script>
+
 </body>
 
 </html>
