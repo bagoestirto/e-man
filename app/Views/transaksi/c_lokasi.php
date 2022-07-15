@@ -49,7 +49,7 @@
                             </select>
                         </div>
                         <div class="col-sm-3">
-                            <select class="select2 form-select shadow-none" id="qbar_1" name="qbar" required>
+                            <select class="select2 form-select shadow-none" id="qbar_1" name="qbar[]" required>
 
                             </select>
                         </div>

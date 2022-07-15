@@ -54,7 +54,6 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode Barang</th>
                             <th>Nama Barang</th>
                             <th>Jenis Barang</th>
                             <th>Merk</th>
@@ -62,6 +61,7 @@
                             <th>Kode Sumberdana</th>
                             <th>Tgl Pembelian</th>
                             <th>Kondisi</th>
+                            <th>Qty</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,7 +69,6 @@
                         <?php foreach ($lokasi as $p) : ?>
                             <tr>
                                 <td><?= $i++; ?></td>
-                                <td><?= $p['kode_barang']; ?></td>
                                 <td><?= $p['nama_barang']; ?></td>
                                 <td><?= $p['jenis_barang']; ?></td>
                                 <td><?= $p['merk']; ?></td>
@@ -77,6 +76,7 @@
                                 <td><?= $p['kode_sumberdana']; ?></td>
                                 <td><?= $p['tgl_pembelian']; ?></td>
                                 <td><?= $p['kondisi']; ?></td>
+                                <td><?= $p['qty']; ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

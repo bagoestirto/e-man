@@ -18,6 +18,11 @@ class BarangModel extends Model
             return $this->findAll();
         }
 
-        return $this->where(['slug_barang' => $slug])->first();
+        return $this->where(['id_barang' => $slug])->first();
+    }
+    public function getBarangNotNol()
+    {
+        $array = ['stok_barang >' => 0, 'jenis_barang' => 'ASET TETAP'];
+        return $this->where($array)->findAll();
     }
 }

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\TransModel;
 use App\Models\BarangModel;
 use App\Models\PegawaiModel;
+use CodeIgniter\CLI\Console;
 use CodeIgniter\Validation\StrictRules\Rules;
 use Kint\Parser\FsPathPlugin;
 
@@ -21,9 +22,6 @@ class Mtrans extends BaseController
     {
         $lokasi = $this->transModel->getLokasi();
         $i = 0;
-        //foreach($lokasi as $lok){
-        //   $lok[$i] = $lok['kode_lokasi'];
-        //}
         $data = [
             'side' => "t_lokasi",
             'tittle' => "List Lokasi Barang",
@@ -34,9 +32,7 @@ class Mtrans extends BaseController
 
     public function det_lokasi($klok)
     {
-        //session();// pindahkan ke base controller
         $qlok = $this->transModel->getDetLokasi($klok);
-        //echo $qlok['kode_pegawai'];
         foreach ($qlok as $k) {
             $kpegawai = $k['kode_pegawai'];
         }
@@ -48,11 +44,24 @@ class Mtrans extends BaseController
             'lokasi' => $this->transModel->getDetLokasi($klok),
             'validation' => \Config\Services::validation()
         ];
-        //foreach ($this->transModel->getDetLokasi($klok) as $a) {
-        //    echo $k['nama_pegawai'] . " " . $a['nama_barang'] . "<br>";
-        //}
-        //dd($data);
         return view('transaksi/det_lokasi', $data);
+    }
+
+    public function e_lokasi($klok)
+    {
+        $qlok = $this->transModel->getDetLokasi($klok);
+        foreach ($qlok as $k) {
+            $kpegawai = $k['kode_pegawai'];
+        }
+        $kpeg = $kpegawai;
+        $data = [
+            'side' => "c_lokasi",
+            'tittle' => "Detail Lokasi Barang",
+            'pegawai' => $this->pegawaiModel->getPegawai(),
+            'lokasi' => $this->transModel->getDetLokasi($klok),
+            'validation' => \Config\Services::validation()
+        ];
+        return view('transaksi/e_lokasi', $data);
     }
 
     public function c_lokasi()
@@ -66,7 +75,7 @@ class Mtrans extends BaseController
             'side' => "c_lokasi",
             'tittle' => "Tambah Lokasi Barang",
             'pegawai' => $this->transModel->getPegawai()->getResult(),
-            'barang' => $this->barangModel->getBarang(),
+            'barang' => $this->barangModel->getBarangNotNol(),
             'maxIdLokasi' => $maxIdLokasi,
             'validation' => \Config\Services::validation()
         ];
@@ -75,7 +84,6 @@ class Mtrans extends BaseController
 
     public function s_lokasi()
     {
-        //dd($this->request->getVar('nbar'));
         $datalokasi = [
             'kode_lokasi' => $this->request->getVar('kode_lokasi'),
             'kode_pegawai' => $this->request->getVar('kpeg'),
@@ -86,16 +94,41 @@ class Mtrans extends BaseController
 
         $qtyBar = $this->request->getVar('nbar');
         $totbar = count($qtyBar);
-        //echo $totbar;
         for ($i = 0; $i < $totbar; $i++) {
             $databar = [
                 'kode_lokasi' => $this->request->getVar('kode_lokasi'),
                 'kode_barang' => $this->request->getVar('nbar[' . $i . ']'),
+                'qty' => $this->request->getVar('qbar[' . $i . ']'),
             ];
-            //echo $this->request->getVar('nbar[' . $i . ']');
             $this->transModel->insave('tb_detail_lokasi', $databar);
+
+            $stokAwal = $this->barangModel->getBarang($this->request->getVar('nbar[' . $i . ']'));
+            $stok_Awal = $stokAwal['stok_barang'];
+            $stokAkhir = $stok_Awal - $this->request->getVar('qbar[' . $i . ']');
+            $this->barangModel->save([
+                'id_barang' => $this->request->getVar('nbar[' . $i . ']'),
+                'stok_barang' => $stokAkhir
+            ]);
         }
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
         return redirect()->to(base_url('/mtrans/l_lokasi'));
+    }
+
+    public function dLokasi() //delete lokasi dan update jumlah stok barang
+    {
+        $kode_lokasi = $this->request->getVar('kode_lokasi');
+        $data_lokasi = $this->transModel->getDetLokasi($kode_lokasi);
+        foreach ($data_lokasi as $datLok) {
+            $stokBaru = $datLok['stok_barang'] + $datLok['qty'];
+            $this->barangModel->save([
+                'id_barang' => $datLok['id_barang'],
+                'stok_barang' => $stokBaru
+            ]);
+        }
+
+        $this->transModel->dLokasi($kode_lokasi);
+
+        session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+        return redirect()->to('/mtrans/l_lokasi');
     }
 }

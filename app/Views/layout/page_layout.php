@@ -142,6 +142,7 @@
             $(".add-more").click(function() {
                 let count = document.getElementsByClassName("opt-barang").length + 1;
                 var html = '';
+                html += '<?php if (!empty($barang)) { ?>';
                 html += '<div class="form-group row"><label for="nbar" class="col-sm-3 text-end control-label col-form-label">Nama Barang</label>';
                 html += '<div class="col-sm-3">';
                 html += '<select class="opt-barang select2 form-select shadow-none" id="pbar[]" name="nbar[]" required>';
@@ -154,6 +155,7 @@
                 html += '</div>';
                 html += '<button class="btn btn-danger remove col-sm-1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>';
                 html += '</div>';
+                html += '<?php } ?>';
                 // var html = $(".copy").html();
                 $(".before-here").before(html);
             });
@@ -179,7 +181,7 @@
                         if (res) {
                             $(`#qbar_${idx}`).empty();
                             $(`#qbar_${idx}`).append('<option>Jumlah Barang</option>');
-                            for (let i = 1; i < data.stok_barang; i++) {
+                            for (let i = 1; i <= data.stok_barang; i++) {
                                 // console.log(i);
                                 $(`#qbar_${idx}`).append('<option value="' + i + '">' + i + '</option>');
                             }

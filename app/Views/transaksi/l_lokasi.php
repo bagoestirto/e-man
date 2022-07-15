@@ -45,9 +45,18 @@
                                     <td><?= $p['nama_lokasi']; ?></td>
                                     <td><?= $p['titik_koordinat']; ?></td>
                                     <td>
-                                        <a class="btn btn-success btn-sm text-white" title="Edit" href="<?= base_url('/mtrans/det_lokasi/' . $p['kode_lokasi']); ?>">
-                                            <i class="fas fa-pencil-alt"></i>
+                                        <a class="btn btn-info btn-sm text-white" title="View" href="<?= base_url('/mtrans/det_lokasi/' . $p['kode_lokasi']); ?>">
+                                            <i class="fas fa-eye"></i> View
                                         </a>
+                                        <a class="btn btn-success btn-sm text-white" title="Edit" href="<?= base_url('/mtrans/e_lokasi/' . $p['kode_lokasi']); ?>">
+                                            <i class="fas fa-pencil-alt"></i> Edit
+                                        </a>
+                                        <form action="/mtrans/dLokasi/" method="POST" class="d-inline">
+                                            <?= csrf_field(); ?>
+                                            <input type="hidden" name="kode_lokasi" value="<?= $p['kode_lokasi']; ?>">
+                                            <button type="submit" title="Del" class="btn btn-danger btn-sm text-white" tittle="Del" onclick="return confirm('Apakah anda yakin?')"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+
                                     </td>
                                 </tr>
                                 <?php
