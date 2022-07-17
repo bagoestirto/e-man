@@ -21,4 +21,12 @@ class Dropdown extends BaseController
 
         return json_encode($states);
     }
+    public function getPerDrop()
+    {
+        $id_barang = $this->request->getVar("id_barang");
+
+        $states = $this->db->query("SELECT kode_barang, sum(qty) as qty from tb_detail_lokasi where kode_barang = " . $id_barang)->getFirstRow();
+
+        return json_encode($states);
+    }
 }

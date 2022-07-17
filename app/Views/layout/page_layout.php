@@ -228,6 +228,75 @@
         });
     </script>
 
+    <!--untuk halaman perawatan-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // $(".add-more").click(function() {
+            //     var html = $(".copy").html();
+            //     $(".before-here").before(html);
+            // });
+            $(".add-more-per").click(function() {
+                let count = document.getElementsByClassName("opt-barang").length + 1;
+                var html = '';
+                html += '<?php if (!empty($barang)) { ?>';
+                html += '<div class="form-group row"><label for="nbar" class="col-sm-3 text-end control-label col-form-label">Nama Barang</label>';
+                html += '<div class="col-sm-3">';
+                html += '<select class="opt-barang select2 form-select shadow-none" id="pbarper[]" name="nbarper[]" required>';
+                html += '<option value="">Pilih Barang</option><?php foreach ($barang as $bar) : ?>';
+                html += '<option onclick="getJumlahPer(<?= $bar['id_barang'] ?>, ' + count + ')" value="<?= $bar['id_barang'] ?>"><?= $bar['nama_barang']; ?></option><?php endforeach; ?>';
+                html += '</select>';
+                html += '</div>';
+                html += '<div class="col-sm-3">';
+                html += '<select class="select2 form-select shadow-none" id="qbarper_' + count + '" name="qbarper[]" required></select>';
+                html += '</div>';
+                html += '<button class="btn btn-danger remove col-sm-1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>';
+                html += '</div>';
+                html += '<?php } ?>';
+                // var html = $(".copy").html();
+                $(".before-here-per").before(html);
+            });
+
+            // saat tombol remove dklik control group akan dihapus 
+            $("body").on("click", ".remove", function() {
+                $(this).parents(".form-group").remove();
+            });
+        });
+    </script>
+
+    <script type=text/javascript>
+        // when country dropdown changes
+        function getJumlahPer(item, idx) {
+            if (item) {
+                $.ajax({
+                    type: "GET",
+                    url: "<?= base_url('getPerDrop') ?>",
+                    data: {
+                        id_barang: item
+                    },
+                    success: function(res) {
+                        var data = JSON.parse(res);
+                        if (res) {
+                            $(`#qbarper_${idx}`).empty();
+                            $(`#qbarper_${idx}`).append('<option>Jumlah Barang</option>');
+                            for (let i = 1; i <= data.qty; i++) {
+                                // console.log(i);
+                                $(`#qbarper_${idx}`).append('<option value="' + i + '">' + i + '</option>');
+                            }
+                            // $.each(data, function(key, value) {
+                            //     $(`#qbar_${idx}`).append('<option value="' + value.stok_barang + '">' + value.stok_barang +
+                            //         '</option>');
+                            // });
+                        } else {
+                            $(`#qbarper_${idx}`).empty();
+                        }
+                    }
+                });
+            } else {
+                $(`#qbarper_${idx}`).empty();
+            }
+        }
+    </script>
+
 </body>
 
 </html>

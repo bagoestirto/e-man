@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : LOKALAN
+ Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 100422
+ Source Server Version : 100424
  Source Host           : localhost:3306
  Source Schema         : eman
 
  Target Server Type    : MySQL
- Target Server Version : 100422
+ Target Server Version : 100424
  File Encoding         : 65001
 
- Date: 14/07/2022 17:01:06
+ Date: 17/07/2022 12:11:24
 */
 
 SET NAMES utf8mb4;
@@ -43,16 +43,16 @@ CREATE TABLE `tb_barang`  (
 -- ----------------------------
 INSERT INTO `tb_barang` VALUES (1, 'PRS/BOS/2021', 'PRS-BOS-2021', 'Printer Scan', 2, 'ASET TETAP', 'EPSON', 'L3110', '001-BOS', '2021-06-11', 'Unit', 'BAIK', 7300000);
 INSERT INTO `tb_barang` VALUES (2, 'KAD/BOS/2021', 'KAD-BOS-2021', 'Kipas Angin DInding', 2, 'ASET TETAP', 'MASPION', 'Maspion', '001-BOS', '2021-06-11', 'Unit', 'BAIK', 1700000);
-INSERT INTO `tb_barang` VALUES (3, 'SRA/BOS/2021', 'SRA-BOS-2021', 'Scanner Portable', 1, 'ASET TETAP', 'CANON', 'Epson', '001-BOS', '2021-06-11', 'Unit', 'BAIK', 4235000);
+INSERT INTO `tb_barang` VALUES (3, 'SRA/BOS/2021', 'SRA-BOS-2021', 'Scanner Portable', 8, 'ASET TETAP', 'CANON', 'Epson', '001-BOS', '2021-06-11', 'Unit', 'BAIK', 4235000);
 INSERT INTO `tb_barang` VALUES (4, 'CPUKI/BOS/2021', 'CPUKI-BOS-2021', 'CPU Rakitan', 4, 'ASET TETAP', '-', 'Core i5', '001-BOS', '2021-06-11', 'Unit', 'BAIK', 15000000);
 INSERT INTO `tb_barang` VALUES (5, 'KAD/BOS/2021', 'KAD-BOS-2021', 'Kipas Angin Dinding', 2, 'ASET TETAP', 'MASPION', 'PW-501W', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 1700000);
-INSERT INTO `tb_barang` VALUES (6, 'CPURE/BOS/2021', 'CPURE-BOS-2021', 'CPU Core i5', 1, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 3750000);
-INSERT INTO `tb_barang` VALUES (7, 'MNR/BOS/2021', 'MNR-BOS-2021', 'Monitor 16\"', 5, 'ASET TETAP', '-', 'LG', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 6375000);
-INSERT INTO `tb_barang` VALUES (8, 'LTP/BOS/2021', 'LTP-BOS-2021', 'Laptop', 1, 'ASET TETAP', 'ASUS', 'K513EA-OLED321', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 9850000);
-INSERT INTO `tb_barang` VALUES (9, 'MUI/BOS/2021', 'MUI-BOS-2021', 'Meja Kursi Siswa', 75, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 66000000);
-INSERT INTO `tb_barang` VALUES (10, 'MUG/BOS/2021', 'MUG-BOS-2021', 'Meja Kursi Guru', 1, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 1650000);
-INSERT INTO `tb_barang` VALUES (11, 'KGG/BOS/2021', 'KGG-BOS-2021', 'Kursi Guru', 9, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 2925000);
-INSERT INTO `tb_barang` VALUES (14, 'PRS/BOS/2021a', 'PRS-BOS-2021a', 'asdjk', 20001, 'Aset Tetap', 'adfjk', 'asdfjk', '001-BOS', '2022-07-19', 'Pcs', 'Rusak', 4006);
+INSERT INTO `tb_barang` VALUES (6, 'CPURE/BOS/2021', 'CPURE-BOS-2021', 'CPU Core i5', 3, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 3750000);
+INSERT INTO `tb_barang` VALUES (7, 'MNR/BOS/2021', 'MNR-BOS-2021', 'Monitor 16\"', 3, 'ASET TETAP', '-', 'LG', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 6375000);
+INSERT INTO `tb_barang` VALUES (8, 'LTP/BOS/2021', 'LTP-BOS-2021', 'Laptop', 2, 'ASET TETAP', 'ASUS', 'K513EA-OLED321', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 9850000);
+INSERT INTO `tb_barang` VALUES (9, 'MUI/BOS/2021', 'MUI-BOS-2021', 'Meja Kursi Siswa', 57, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 66000000);
+INSERT INTO `tb_barang` VALUES (10, 'MUG/BOS/2021', 'MUG-BOS-2021', 'Meja Kursi Guru', 6, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 1650000);
+INSERT INTO `tb_barang` VALUES (11, 'KGG/BOS/2021', 'KGG-BOS-2021', 'Kursi Guru', 1, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 2925000);
+INSERT INTO `tb_barang` VALUES (14, 'PRS/BOS/2021a', 'PRS-BOS-2021a', 'asdjk', 7, 'Aset Tetap', 'adfjk', 'asdfjk', '001-BOS', '2022-07-19', 'Pcs', 'Rusak', 4006);
 
 -- ----------------------------
 -- Table structure for tb_detail_lokasi
@@ -60,18 +60,19 @@ INSERT INTO `tb_barang` VALUES (14, 'PRS/BOS/2021a', 'PRS-BOS-2021a', 'asdjk', 2
 DROP TABLE IF EXISTS `tb_detail_lokasi`;
 CREATE TABLE `tb_detail_lokasi`  (
   `kode_lokasi` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `kode_barang` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `kode_barang` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `qty` int(10) NULL DEFAULT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_detail_lokasi
 -- ----------------------------
-INSERT INTO `tb_detail_lokasi` VALUES ('11', 'KGG/BOS/2021');
-INSERT INTO `tb_detail_lokasi` VALUES ('11', 'LTP/BOS/2021');
-INSERT INTO `tb_detail_lokasi` VALUES ('11', 'CPURE/BOS/2021');
-INSERT INTO `tb_detail_lokasi` VALUES ('10', 'KGG/BOS/2021');
-INSERT INTO `tb_detail_lokasi` VALUES ('10', 'LTP/BOS/2021');
-INSERT INTO `tb_detail_lokasi` VALUES ('10', 'CPURE/BOS/2021');
+INSERT INTO `tb_detail_lokasi` VALUES ('12', '9', 8);
+INSERT INTO `tb_detail_lokasi` VALUES ('12', '11', 6);
+INSERT INTO `tb_detail_lokasi` VALUES ('13', '9', 10);
+INSERT INTO `tb_detail_lokasi` VALUES ('13', '11', 2);
+INSERT INTO `tb_detail_lokasi` VALUES ('13', '8', 6);
+INSERT INTO `tb_detail_lokasi` VALUES ('14', '7', 2);
 
 -- ----------------------------
 -- Table structure for tb_detail_peminjaman
@@ -88,11 +89,20 @@ CREATE TABLE `tb_detail_peminjaman`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_detail_perawatan`;
 CREATE TABLE `tb_detail_perawatan`  (
-  `kode_perawatan` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `kode_perawatan` int(15) NOT NULL,
   `kode_barang` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `qty` int(10) NULL DEFAULT NULL,
   `keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `biaya_perawatan` int(11) NOT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_detail_perawatan
+-- ----------------------------
+INSERT INTO `tb_detail_perawatan` VALUES (1, '2', 2, 'rusak', 7000);
+INSERT INTO `tb_detail_perawatan` VALUES (1, '6', 1, 'rusak', 9000);
+INSERT INTO `tb_detail_perawatan` VALUES (2, '11', 1, '', 0);
+INSERT INTO `tb_detail_perawatan` VALUES (2, '7', 1, '', 0);
 
 -- ----------------------------
 -- Table structure for tb_lokasi
@@ -109,17 +119,9 @@ CREATE TABLE `tb_lokasi`  (
 -- ----------------------------
 -- Records of tb_lokasi
 -- ----------------------------
-INSERT INTO `tb_lokasi` VALUES (1, '197112202007011017', 'KANTOR', '-7.7540617600031245, 113.53666330714829');
-INSERT INTO `tb_lokasi` VALUES (2, '197109042005012009', 'LAB KOMPUTER 1', '-7.7540318610599535, 113.53654528995966');
-INSERT INTO `tb_lokasi` VALUES (3, '196810112007012019', 'LAB KOMPUTER 2', '-7.754044485058443, 113.53649499854404');
-INSERT INTO `tb_lokasi` VALUES (4, '197112252008012018', 'PERPUSTAKAAN', '-7.754015250535052, 113.53654193719863');
-INSERT INTO `tb_lokasi` VALUES (5, '197609292008012017', 'X AKL 1', '-7.754005948640824, 113.53635954699803');
-INSERT INTO `tb_lokasi` VALUES (6, '198306042009031004', 'X AKL 2', '-7.753952794955551, 113.53635015926712');
-INSERT INTO `tb_lokasi` VALUES (7, '197211242006041007', 'BENGKEL', '-7.754073055158884, 113.53670354028077');
-INSERT INTO `tb_lokasi` VALUES (8, '197605142011012006', 'X TKRO 1', '-7.754006613061852, 113.53644001326299');
-INSERT INTO `tb_lokasi` VALUES (9, '197806182010012007', 'X TKRO 2', '-7.754017243798085, 113.53641050896583');
-INSERT INTO `tb_lokasi` VALUES (10, '198505122010012020', 'X TKRO 3', '-7.7540404985326425, 113.53641386172687');
-INSERT INTO `tb_lokasi` VALUES (11, ' 197609292008012017', 'asd', 'asd');
+INSERT INTO `tb_lokasi` VALUES (12, '197605142011012006', 'jkl', 'jkl');
+INSERT INTO `tb_lokasi` VALUES (13, ' 197609292008012017', 'tyu', 'yyu');
+INSERT INTO `tb_lokasi` VALUES (14, '196810112007012019', 'opo', 'opo');
 
 -- ----------------------------
 -- Table structure for tb_pegawai
@@ -176,9 +178,15 @@ CREATE TABLE `tb_penghapusan`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_perawatan`;
 CREATE TABLE `tb_perawatan`  (
-  `kode_perawatan` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `tgl_perawatan` datetime(0) NOT NULL
+  `kode_perawatan` int(15) NOT NULL,
+  `tgl_perawatan` date NOT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_perawatan
+-- ----------------------------
+INSERT INTO `tb_perawatan` VALUES (1, '2022-07-17');
+INSERT INTO `tb_perawatan` VALUES (2, '2022-07-07');
 
 -- ----------------------------
 -- Table structure for tb_sumberdana
