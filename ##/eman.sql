@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : LOKALAN
  Source Server Type    : MySQL
- Source Server Version : 100424
+ Source Server Version : 100422
  Source Host           : localhost:3306
  Source Schema         : eman
 
  Target Server Type    : MySQL
- Target Server Version : 100424
+ Target Server Version : 100422
  File Encoding         : 65001
 
- Date: 17/07/2022 12:11:24
+ Date: 19/07/2022 15:13:48
 */
 
 SET NAMES utf8mb4;
@@ -93,16 +93,15 @@ CREATE TABLE `tb_detail_perawatan`  (
   `kode_barang` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `qty` int(10) NULL DEFAULT NULL,
   `keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `biaya_perawatan` int(11) NOT NULL
+  `biaya_perawatan` int(11) NOT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_detail_perawatan
 -- ----------------------------
-INSERT INTO `tb_detail_perawatan` VALUES (1, '2', 2, 'rusak', 7000);
-INSERT INTO `tb_detail_perawatan` VALUES (1, '6', 1, 'rusak', 9000);
-INSERT INTO `tb_detail_perawatan` VALUES (2, '11', 1, '', 0);
-INSERT INTO `tb_detail_perawatan` VALUES (2, '7', 1, '', 0);
+INSERT INTO `tb_detail_perawatan` VALUES (1, '2', 2, 'rusak', 7000, 'proses');
+INSERT INTO `tb_detail_perawatan` VALUES (1, '6', 1, 'rusak', 9000, 'proses');
 
 -- ----------------------------
 -- Table structure for tb_lokasi
@@ -186,7 +185,6 @@ CREATE TABLE `tb_perawatan`  (
 -- Records of tb_perawatan
 -- ----------------------------
 INSERT INTO `tb_perawatan` VALUES (1, '2022-07-17');
-INSERT INTO `tb_perawatan` VALUES (2, '2022-07-07');
 
 -- ----------------------------
 -- Table structure for tb_sumberdana
@@ -203,10 +201,12 @@ CREATE TABLE `tb_sumberdana`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user`  (
+  `id_user` int(10) NOT NULL,
   `username` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nama_user` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `jabatan` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id_user`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
