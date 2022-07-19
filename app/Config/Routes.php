@@ -37,10 +37,13 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Pages::index');
+$routes->get('/', 'Pages::index', ['filter' => 'auth']);
 
 //$routes->get('/komik/create', 'Komik::create');
+$routes->get('/login', 'Login::index');
+
 $routes->get('/muser/l_user', 'Muser::l_user');
+$routes->delete('/muser/(:num)', 'Muser::delete/$1');
 
 $routes->get('/mpegawai/l_pegawai', 'Mpegawai::l_pegawai');
 $routes->get('/mpegawai/c_pegawai', 'Mpegawai::c_pegawai');
