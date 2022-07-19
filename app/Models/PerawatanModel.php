@@ -14,13 +14,13 @@ class PerawatanModel extends Model
             ->orderBy('tb_perawatan.kode_perawatan', 'DESC');
         $builder = $builder->select('tb_perawatan.tgl_perawatan')
             ->select('tb_detail_perawatan.*')
-            ->select('tb_barang.nama_barang');
+            ->select('tb_barang.nama_barang,tb_barang.jenis_barang,tb_barang.tgl_pembelian');
 
         if ($slug == false) {
             return $builder->get()->getResultArray();
         }
 
-        return $builder->where(['tb_perawatan.kode_perawatan' => $slug]);
+        return $builder->where(['tb_perawatan.kode_perawatan' => $slug])->get()->getResultArray();
     }
 
     public function getMaxIdPerawatan()
@@ -35,5 +35,16 @@ class PerawatanModel extends Model
             ->join('tb_barang', 'tb_detail_lokasi.kode_barang = tb_barang.id_barang', 'LEFT')
             ->groupBy('tb_detail_lokasi.kode_barang');
         return $builder->get()->getResultArray();
+    }
+
+    public function upDetPer($table, $where, $data)
+    {
+        $this->db->table($table)->where($where)->update($data);
+    }
+
+    public function dPer($kode_perawatan)
+    {
+        $this->db->table('tb_perawatan')->where('kode_perawatan', $kode_perawatan)->delete();
+        $this->db->table('tb_detail_perawatan')->where('kode_perawatan', $kode_perawatan)->delete();
     }
 }

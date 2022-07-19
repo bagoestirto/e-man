@@ -64,10 +64,49 @@ class Mperawatan extends BaseController
                 'kode_perawatan' => $this->request->getVar('kode_perawatan'),
                 'kode_barang' => $this->request->getVar('nbarper[' . $i . ']'),
                 'qty' => $this->request->getVar('qbarper[' . $i . ']'),
+                'status' => 'proses',
             ];
             $this->transModel->insave('tb_detail_perawatan', $databar);
         }
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
         return redirect()->to(base_url('/mperawatan/l_perawatan'));
+    }
+
+    public function det_perawatan($kper)
+    {
+        $data = [
+            'side' => "c_perawatan",
+            'tittle' => "Detail Perawatan Barang",
+            'perawatan' => $this->perawatanModel->getPerawatan($kper),
+            'validation' => \Config\Services::validation()
+        ];
+        return view('perawatan/det_perawatan', $data);
+    }
+
+    public function s_det_per()
+    {
+        // dd($this->request->getVar());
+        $totKper = count($this->request->getVar('kper'));
+        for ($i = 0; $i < $totKper; $i++) {
+            $data = [
+                'status' => $this->request->getVar('status[' . $i . ']')
+            ];
+            $where = ['kode_perawatan' => $this->request->getVar('kper[' . $i . ']'), 'kode_barang' => $this->request->getVar('kbar[' . $i . ']')];
+            $this->perawatanModel->upDetPer('tb_detail_perawatan', $where, $data);
+
+            // echo $this->request->getVar('status[' . $i . ']') . " | " . $this->request->getVar('kper[' . $i . ']') . " | " . $this->request->getVar('kbar[' . $i . ']') . "<br>";
+        }
+        session()->setFlashdata('pesan', 'Data berhasil diubah.');
+        return redirect()->to(base_url('/mperawatan/l_perawatan'));
+    }
+
+    public function dPer() //delete perawatan
+    {
+        $kode_perawatan = $this->request->getVar('kode_perawatan');
+
+        $this->perawatanModel->dPer($kode_perawatan);
+
+        session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+        return redirect()->to('/mperawatan/l_perawatan');
     }
 }

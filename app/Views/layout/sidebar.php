@@ -30,7 +30,7 @@
                             <a href="<?= base_url('/mtrans/t_lokasi'); ?>" class="sidebar-link"><i class="fas fa-map-marker-alt"></i><span class="hide-menu"> Lokasi </span></a>
                         </li>
                         <li class="sidebar-item <?= ($side == 'c_perawatan') ? 'active' : ''; ?>">
-                            <a href="<?= base_url('/mperawatan/l_perawatan'); ?>" class="sidebar-link"><i class="mdi mdi-account-box"></i><span class="hide-menu"> Perawatan </span></a>
+                            <a href="<?= base_url('/mperawatan/l_perawatan'); ?>" class="sidebar-link"><i class="mdi mdi-settings"></i><span class="hide-menu"> Perawatan </span></a>
                         </li>
                         <li class="sidebar-item <?= ($side == 'c_barang' or $side == 'e_barang') ? 'active' : ''; ?>">
                             <a href="<?= base_url('/mbarang/l_barang'); ?>" class="sidebar-link"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"> Barang </span></a>

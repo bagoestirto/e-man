@@ -26,6 +26,7 @@
                                 <th>Nama Barang</th>
                                 <th>Keterangan</th>
                                 <th>Biaya Perawatan</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -44,6 +45,7 @@
                                     <td><?= $p['nama_barang']; ?></td>
                                     <td><?= $p['keterangan']; ?></td>
                                     <td><?= $p['biaya_perawatan']; ?></td>
+                                    <td><?= $p['status']; ?></td>
                                     <td>
                                         <a class="btn btn-info btn-sm text-white" title="View" href="<?= base_url('/mperawatan/det_perawatan/' . $p['kode_perawatan']); ?>">
                                             <i class="fas fa-eye"></i> View
@@ -52,7 +54,7 @@
                                                                                                                 ?>">
                                             <i class="fas fa-pencil-alt"></i> Edit
                                         </a>-->
-                                        <form action="/mperawatan/dPerawatan/" method="POST" class="d-inline">
+                                        <form action="/mperawatan/dPer/" method="POST" class="d-inline">
                                             <?= csrf_field(); ?>
                                             <input type="hidden" name="kode_perawatan" value="<?= $p['kode_perawatan']; ?>">
                                             <button type="submit" title="Del" class="btn btn-danger btn-sm text-white" tittle="Del" onclick="return confirm('Apakah anda yakin?')"><i class="fas fa-trash-alt"></i></button>
