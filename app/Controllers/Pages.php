@@ -8,7 +8,8 @@ class Pages extends BaseController
     {
         $data = [
             'side' => "home",
-            'tittle' => "Dashboard"
+            'tittle' => "Dashboard",
+            // 'session' => session()->get('nama_user')
         ];
         return view('layout/home', $data);
     }

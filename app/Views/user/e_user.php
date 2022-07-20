@@ -28,14 +28,14 @@
                     <div class="form-group row">
                         <label for="password" class="col-sm-3 text-end control-label col-form-label">Password</label>
                         <div class="col-sm-9">
-                            <input value="" type="text" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" name="password" placeholder="Password" required />
+                            <input value="" type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" name="password" placeholder="Password" required />
                             <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="confpassword" class="col-sm-3 text-end control-label col-form-label">Konfirmasi Password</label>
                         <div class="col-sm-9">
-                            <input value="" type="text" class="form-control <?= ($validation->hasError('confpassword')) ? 'is-invalid' : ''; ?>" id="confpassword" name="confpassword" placeholder="Konfirmasi Password" required />
+                            <input value="" type="password" class="form-control <?= ($validation->hasError('confpassword')) ? 'is-invalid' : ''; ?>" id="confpassword" name="confpassword" placeholder="Konfirmasi Password" required />
                             <div class="invalid-feedback"><?= $validation->getError('confpassword'); ?></div>
                         </div>
                     </div>

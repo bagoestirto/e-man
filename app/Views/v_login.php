@@ -9,7 +9,7 @@
   <meta name="keywords" content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template" />
   <meta name="description" content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+  <title>E-MAN SMKN 1 Kotaanyar</title>
   <!-- Favicon icon -->
   <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(); ?>/assets/images/smk.png" />
   <!-- Custom CSS -->
@@ -23,7 +23,7 @@
 </head>
 
 <body>
-  <div class="main-wrapper">
+  <div class="main-wrapper" style="padding: 5% 25% 25%;">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -45,9 +45,8 @@
           no-block
           justify-content-center
           align-items-center
-          bg-dark
-        ">
-      <div class="auth-box bg-dark border-top border-secondary">
+          bg-dark">
+      <div class="auth-box bg-dark border-top border-secondary" style="margin-bottom: 20px;">
         <div id="loginform">
           <div class="text-center pt-3 pb-3">
             <span class="db"><img src="<?= base_url(); ?>/assets/images/smk.png" width="15%" alt="logo" /></span>

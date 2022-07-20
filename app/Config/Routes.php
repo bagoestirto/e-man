@@ -42,21 +42,23 @@ $routes->get('/', 'Pages::index', ['filter' => 'auth']);
 //$routes->get('/komik/create', 'Komik::create');
 $routes->get('/login', 'Login::index');
 
-$routes->get('/muser/l_user', 'Muser::l_user');
+$routes->get('/muser/l_user', 'Muser::l_user', ['filter' => 'auth']);
+$routes->get('/muser/c_user', 'Muser::c_user', ['filter' => 'auth']);
 $routes->delete('/muser/(:num)', 'Muser::delete/$1');
 
-$routes->get('/mpegawai/l_pegawai', 'Mpegawai::l_pegawai');
-$routes->get('/mpegawai/c_pegawai', 'Mpegawai::c_pegawai');
+$routes->get('/mpegawai/l_pegawai', 'Mpegawai::l_pegawai', ['filter' => 'auth']);
+$routes->get('/mpegawai/c_pegawai', 'Mpegawai::c_pegawai', ['filter' => 'auth']);
 $routes->get('/mpegawai/edit/(:segment)', 'Mpegawai::edit/$1');
 $routes->delete('/mpegawai/(:num)', 'Mpegawai::delete/$1');
 
-$routes->get('/mbarang/l_barang', 'Mbarang::l_barang');
-$routes->get('/mbarang/c_barang', 'Mbarang::c_barang');
+$routes->get('/mbarang/l_barang', 'Mbarang::l_barang', ['filter' => 'auth']);
+$routes->get('/mbarang/c_barang', 'Mbarang::c_barang', ['filter' => 'auth']);
 $routes->get('/mbarang/edit/(:segment)', 'Mbarang::edit/$1');
 $routes->delete('/mbarang/(:num)', 'Mbarang::delete/$1');
 
-$routes->get('/mtrans/t_lokasi', 'Mtrans::l_lokasi');
-$routes->get('/mtrans/(:num)', 'Mtrans::dLokasi');
+$routes->get('/mtrans/t_lokasi', 'Mtrans::l_lokasi', ['filter' => 'auth']);
+$routes->get('/mtrans/c_lokasi', 'Mtrans::c_lokasi', ['filter' => 'auth']);
+$routes->get('/mtrans/(:num)', 'Mtrans::dLokasi', ['filter' => 'auth']);
 
 $routes->get('getState', 'Dropdown::getState');
 $routes->get('getPerDrop', 'Dropdown::getPerDrop');
