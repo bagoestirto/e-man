@@ -23,17 +23,20 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item <?= ($side == 't_lokasi' or $side == 'c_lokasi' or $side == 'c_perawatan') ? 'selected' : ''; ?>">
-                    <a class="sidebar-link has-arrow waves-effect waves-dark <?= ($side == 't_lokasi' or $side == 'c_lokasi' or $side == 'c_perawatan') ? 'active' : ''; ?>" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-book"></i><span class="hide-menu">Transaksi </span></a>
-                    <ul aria-expanded="false" class="collapse first-level <?= ($side == 't_lokasi' or $side == 'c_lokasi' or $side == 'c_perawatan') ? 'in' : ''; ?>">
+                <li class="sidebar-item <?= ($side == 't_lokasi' or $side == 'c_lokasi' or $side == 'c_perawatan' or $side == 'c_pinjam' or $side == 'c_kembali') ? 'selected' : ''; ?>">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark <?= ($side == 't_lokasi' or $side == 'c_lokasi' or $side == 'c_perawatan' or $side == 'c_pinjam' or $side == 'c_kembali') ? 'active' : ''; ?>" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-book"></i><span class="hide-menu">Transaksi </span></a>
+                    <ul aria-expanded="false" class="collapse first-level <?= ($side == 't_lokasi' or $side == 'c_lokasi' or $side == 'c_perawatan' or $side == 'c_pinjam' or $side == 'c_kembali') ? 'in' : ''; ?>">
                         <li class="sidebar-item <?= ($side == 'c_lokasi' or $side == 'e_lokasi') ? 'active' : ''; ?>">
                             <a href="<?= base_url('/mtrans/t_lokasi'); ?>" class="sidebar-link"><i class="fas fa-map-marker-alt"></i><span class="hide-menu"> Lokasi </span></a>
                         </li>
                         <li class="sidebar-item <?= ($side == 'c_perawatan') ? 'active' : ''; ?>">
                             <a href="<?= base_url('/mperawatan/l_perawatan'); ?>" class="sidebar-link"><i class="mdi mdi-settings"></i><span class="hide-menu"> Perawatan </span></a>
                         </li>
-                        <li class="sidebar-item <?= ($side == 'c_barang' or $side == 'e_barang') ? 'active' : ''; ?>">
-                            <a href="<?= base_url('/mbarang/l_barang'); ?>" class="sidebar-link"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"> Barang </span></a>
+                        <li class="sidebar-item <?= ($side == 'c_pinjam') ? 'active' : ''; ?>">
+                            <a href="<?= base_url('/mpinjam/l_pinjam'); ?>" class="sidebar-link"><i class="fas fa-arrow-alt-circle-up"></i><span class="hide-menu"> Peminjaman </span></a>
+                        </li>
+                        <li class="sidebar-item <?= ($side == 'c_kembali') ? 'active' : ''; ?>">
+                            <a href="<?= base_url('/mkembali/l_kembali'); ?>" class="sidebar-link"><i class="fas fa-arrow-alt-circle-down"></i><span class="hide-menu"> Pengembalian </span></a>
                         </li>
                     </ul>
                 </li>

@@ -64,7 +64,8 @@
           <!-- Form -->
           <form class="form-horizontal mt-3" id="loginform" method="POST" action="<?= base_url('/login/proses'); ?>">
             <div class="row pb-4">
-              <div class="col-12">
+              <div class="col-2"></div>
+              <div class="col-8">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text bg-success text-white h-100" id="basic-addon1"><i class="mdi mdi-account fs-4"></i></span>
@@ -80,7 +81,7 @@
               </div>
             </div>
             <div class="row border-top border-secondary">
-              <div class="col-12">
+              <div class="col-10">
                 <div class="form-group">
                   <div class="pt-3 pb-3">
                     <button class="btn btn-success float-end text-white" type="submit">

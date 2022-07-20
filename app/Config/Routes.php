@@ -60,6 +60,12 @@ $routes->get('/mtrans/t_lokasi', 'Mtrans::l_lokasi', ['filter' => 'auth']);
 $routes->get('/mtrans/c_lokasi', 'Mtrans::c_lokasi', ['filter' => 'auth']);
 $routes->get('/mtrans/(:num)', 'Mtrans::dLokasi', ['filter' => 'auth']);
 
+$routes->get('/mpinjam/c_pinjam', 'Mpinjam::c_pinjam', ['filter' => 'auth']);
+$routes->get('/mpinjam/cetak/(:num)', 'Mpinjam::cetak/$1', ['filter' => 'auth']);
+$routes->get('/mpinjam/generate/(:num)', 'Mpinjam::generate/$1', ['filter' => 'auth']);
+
+$routes->get('/mpinjam/print/(:num)', 'Mpinjam::print/$1', ['filter' => 'auth']);
+
 $routes->get('getState', 'Dropdown::getState');
 $routes->get('getPerDrop', 'Dropdown::getPerDrop');
 
