@@ -104,6 +104,23 @@ class Mpinjam extends BaseController
         return redirect()->to(base_url('/mpinjam/l_pinjam'));
     }
 
+    public function s_kembali()
+    {
+        // dd($this->request->getVar());
+        $this->pinjamModel->up_pinjam($this->request->getVar('kode_pinjam'));
+        $kode_pinjam = $this->request->getVar('kode_pinjam');
+        $data_pinjam = $this->pinjamModel->getDetPinjam($kode_pinjam);
+        foreach ($data_pinjam as $datPin) {
+            $stokBaru = $datPin['stok_barang'] + $datPin['jumlah'];
+            $this->barangModel->save([
+                'id_barang' => $datPin['id_barang'],
+                'stok_barang' => $stokBaru
+            ]);
+        }
+        session()->setFlashdata('pesan', 'Data berhasil diproses.');
+        return redirect()->to(base_url('/mpinjam/l_kembali'));
+    }
+
     public function det_pinjam($slug)
     {
         $qlok = $this->pinjamModel->getDetPinjam($slug);

@@ -55,4 +55,12 @@ class PinjamModel extends Model
 
         return $builder->get()->getResultArray();
     }
+
+    public function up_pinjam($slug)
+    {
+        $builder = $this->db->table('tb_peminjaman');
+        $builder->set('status', 'Kembali');
+        $builder->where('kode_pinjam', $slug);
+        $builder->update();
+    }
 }
