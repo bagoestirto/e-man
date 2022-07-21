@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : LOKALAN
  Source Server Type    : MySQL
- Source Server Version : 100424
+ Source Server Version : 100422
  Source Host           : localhost:3306
  Source Schema         : eman
 
  Target Server Type    : MySQL
- Target Server Version : 100424
+ Target Server Version : 100422
  File Encoding         : 65001
 
- Date: 21/07/2022 00:30:43
+ Date: 21/07/2022 16:59:22
 */
 
 SET NAMES utf8mb4;
@@ -49,7 +49,7 @@ INSERT INTO `tb_barang` VALUES (5, 'KAD/BOS/2021', 'KAD-BOS-2021', 'Kipas Angin 
 INSERT INTO `tb_barang` VALUES (6, 'CPURE/BOS/2021', 'CPURE-BOS-2021', 'CPU Core i5', 3, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 3750000);
 INSERT INTO `tb_barang` VALUES (7, 'MNR/BOS/2021', 'MNR-BOS-2021', 'Monitor 16\"', 1, 'ASET TETAP', '-', 'LG', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 6375000);
 INSERT INTO `tb_barang` VALUES (8, 'LTP/BOS/2021', 'LTP-BOS-2021', 'Laptop', 2, 'ASET TETAP', 'ASUS', 'K513EA-OLED321', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 9850000);
-INSERT INTO `tb_barang` VALUES (9, 'MUI/BOS/2021', 'MUI-BOS-2021', 'Meja Kursi Siswa', 57, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 66000000);
+INSERT INTO `tb_barang` VALUES (9, 'MUI/BOS/2021', 'MUI-BOS-2021', 'Meja Kursi Siswa', 47, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 66000000);
 INSERT INTO `tb_barang` VALUES (10, 'MUG/BOS/2021', 'MUG-BOS-2021', 'Meja Kursi Guru', 6, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 1650000);
 INSERT INTO `tb_barang` VALUES (11, 'KGG/BOS/2021', 'KGG-BOS-2021', 'Kursi Guru', 1, 'ASET TETAP', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 2925000);
 INSERT INTO `tb_barang` VALUES (14, 'PRS/BOS/2021a', 'PRS-BOS-2021a', 'asdjk', 7, 'Aset Tetap', 'adfjk', 'asdfjk', '001-BOS', '2022-07-19', 'Pcs', 'Rusak', 4006);
@@ -90,6 +90,7 @@ CREATE TABLE `tb_detail_peminjaman`  (
 INSERT INTO `tb_detail_peminjaman` VALUES ('1', '1', 1);
 INSERT INTO `tb_detail_peminjaman` VALUES ('2', '4', 1);
 INSERT INTO `tb_detail_peminjaman` VALUES ('2', '7', 2);
+INSERT INTO `tb_detail_peminjaman` VALUES ('3', '9', 10);
 
 -- ----------------------------
 -- Table structure for tb_detail_perawatan
@@ -177,6 +178,7 @@ CREATE TABLE `tb_peminjaman`  (
 -- ----------------------------
 INSERT INTO `tb_peminjaman` VALUES (1, 'bagoestirto', '2022-07-20 21:17:35', '2022-07-27 21:17:41', '111', 'Keluar');
 INSERT INTO `tb_peminjaman` VALUES (2, 'bagoestirto', '2022-07-20 00:00:00', '2022-07-27 00:00:00', '197211242006041007', 'Keluar');
+INSERT INTO `tb_peminjaman` VALUES (3, 'bagoestirto', '2022-07-21 00:00:00', '2022-07-28 00:00:00', '197806182010012007', 'Keluar');
 
 -- ----------------------------
 -- Table structure for tb_penghapusan
