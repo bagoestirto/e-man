@@ -12,9 +12,11 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <a class="btn btn-info btn-bg text-white" href="<?= base_url('/mpinjam/c_pinjam'); ?>">
-                    <i class="far fa-address-book"></i> Tambah Peminjaman Barang
-                </a>
+                <?php if ($halaman == 'l_pinjam') { ?>
+                    <a class="btn btn-info btn-bg text-white" href="<?= base_url('/mpinjam/c_pinjam'); ?>">
+                        <i class="far fa-address-book"></i> Tambah Peminjaman Barang
+                    </a>
+                <?php } ?>
                 <h6> </h6>
                 <h5 class="card-title">Daftar Peminjaman Semua Barang</h5>
                 <div class="table-responsive">
@@ -49,18 +51,24 @@
                                     <td><?= $p['nama_pegawai']; ?></td>
                                     <td><?= $p['status']; ?></td>
                                     <td>
-                                        <a class="btn btn-info btn-sm text-white" title="View" href="<?= base_url('/mpinjam/det_pinjam/' . $p['kode_pinjam']); ?>">
-                                            <i class="fas fa-eye"></i> View
-                                        </a>
-                                        <a class="btn btn-success btn-sm text-white" title="Edit" href="<?php echo base_url('/mpinjam/e_pinjam/' . $p['kode_pinjam']); ?>">
-                                            <i class="fas fa-pencil-alt"></i> Edit
-                                        </a>
-                                        <form action="/mpinjam/dPer/" method="POST" class="d-inline">
-                                            <?= csrf_field(); ?>
-                                            <input type="hidden" name="kode_pinjam" value="<?= $p['kode_pinjam']; ?>">
-                                            <button type="submit" title="Del" class="btn btn-danger btn-sm text-white" tittle="Del" onclick="return confirm('Apakah anda yakin?')"><i class="fas fa-trash-alt"></i></button>
-                                        </form>
+                                        <?php if ($halaman == 'l_pinjam') { ?>
+                                            <a class="btn btn-info btn-sm text-white" title="View" href="<?= base_url('/mpinjam/det_pinjam/' . $p['kode_pinjam']); ?>">
+                                                <i class="fas fa-eye"></i> View
+                                            </a>
+                                            <a class="btn btn-success btn-sm text-white" target="_blank" title="Print" href="<?php echo base_url('/mpinjam/cetak/' . $p['kode_pinjam']); ?>">
+                                                <i class="fas fa-print"></i> Print
+                                            </a>
+                                            <form action="/mpinjam/dPer/" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="kode_pinjam" value="<?= $p['kode_pinjam']; ?>">
+                                                <button type="submit" title="Del" class="btn btn-danger btn-sm text-white" tittle="Del" onclick="return confirm('Apakah anda yakin?')"><i class="fas fa-trash-alt"></i></button>
+                                            </form>
+                                        <?php } else { ?>
+                                            <a class="btn btn-info btn-sm text-white" title="Proses Pengembalian" href="<?= base_url('/mpinjam/det_kembali/' . $p['kode_pinjam']); ?>">
+                                                <i class="fas fa-arrow-alt-circle-down"></i> Proses Pengembalian
+                                            </a>
 
+                                        <?php } ?>
                                     </td>
                                 </tr>
                                 <?php

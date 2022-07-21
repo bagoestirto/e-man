@@ -62,7 +62,7 @@ $routes->get('/mtrans/(:num)', 'Mtrans::dLokasi', ['filter' => 'auth']);
 
 $routes->get('/mpinjam/c_pinjam', 'Mpinjam::c_pinjam', ['filter' => 'auth']);
 $routes->get('/mpinjam/cetak/(:num)', 'Mpinjam::cetak/$1', ['filter' => 'auth']);
-$routes->get('/mpinjam/generate/(:num)', 'Mpinjam::generate/$1', ['filter' => 'auth']);
+// $routes->get('/mpinjam/generate/(:num)', 'Mpinjam::generate/$1', ['filter' => 'auth']);
 
 $routes->get('/mpinjam/print/(:num)', 'Mpinjam::print/$1', ['filter' => 'auth']);
 

@@ -12,7 +12,8 @@ class PinjamModel extends Model
             ->join('tb_pegawai', 'tb_peminjaman.kode_pegawai = tb_pegawai.kode_pegawai', 'LEFT')
             ->orderBy('tb_peminjaman.kode_pinjam', 'DESC');
         $builder = $builder->select('tb_peminjaman.*')
-            ->select('tb_pegawai.nama_pegawai');
+            ->select('tb_pegawai.nama_pegawai')
+            ->where(['tb_peminjaman.status' => 'Keluar']);
 
         if ($slug == false) {
             return $builder->get()->getResultArray();

@@ -10,7 +10,8 @@ use CodeIgniter\CLI\Console;
 use CodeIgniter\Validation\StrictRules\Rules;
 use Kint\Parser\FsPathPlugin;
 use CodeIgniter\I18n\Time;
-use Dompdf\Dompdf;
+use App\ThirdParty\FPDF\fpdf;
+// use Dompdf\Dompdf;
 
 class Mpinjam extends BaseController
 {
@@ -27,7 +28,21 @@ class Mpinjam extends BaseController
         $lokasi = $this->pinjamModel->getPinjam();
         $i = 0;
         $data = [
+            'halaman' => 'l_pinjam',
             'side' => "c_pinjam",
+            'tittle' => "List Peminjaman Barang",
+            'pinjam' => $this->pinjamModel->getPinjam(),
+        ];
+        return view('pinjam/l_pinjam', $data);
+    }
+
+    public function l_kembali()
+    {
+        $lokasi = $this->pinjamModel->getPinjam();
+        $i = 0;
+        $data = [
+            'halaman' => 'l_kembali',
+            'side' => "c_kembali",
             'tittle' => "List Peminjaman Barang",
             'pinjam' => $this->pinjamModel->getPinjam(),
         ];
@@ -86,7 +101,45 @@ class Mpinjam extends BaseController
             ]);
         }
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
-        return redirect()->to(base_url('/mpinjam/cetak/' . $this->request->getVar('kode_pinjam')));
+        return redirect()->to(base_url('/mpinjam/l_pinjam'));
+    }
+
+    public function det_pinjam($slug)
+    {
+        $qlok = $this->pinjamModel->getDetPinjam($slug);
+        foreach ($qlok as $k) {
+            $kpegawai = $k['kode_pegawai'];
+        }
+        $kpeg = $kpegawai;
+        $data = [
+            'halaman' => "det_pinjam",
+            'side' => "c_pinjam",
+            'tittle' => "Detail Peminjaman Barang",
+            'pegawai' => $this->pegawaiModel->getPegawai($kpeg),
+            'pinjam' => $this->pinjamModel->getDetPinjam($slug),
+
+            'validation' => \Config\Services::validation()
+        ];
+        return view('pinjam/det_pinjam', $data);
+    }
+
+    public function det_kembali($slug)
+    {
+        $qlok = $this->pinjamModel->getDetPinjam($slug);
+        foreach ($qlok as $k) {
+            $kpegawai = $k['kode_pegawai'];
+        }
+        $kpeg = $kpegawai;
+        $data = [
+            'halaman' => "det_kembali",
+            'side' => "c_kembali",
+            'tittle' => "Detail Peminjaman Barang",
+            'pegawai' => $this->pegawaiModel->getPegawai($kpeg),
+            'pinjam' => $this->pinjamModel->getDetPinjam($slug),
+
+            'validation' => \Config\Services::validation()
+        ];
+        return view('pinjam/det_pinjam', $data);
     }
 
     public function cetak($slug)
@@ -96,60 +149,53 @@ class Mpinjam extends BaseController
             $kpegawai = $k['kode_pegawai'];
         }
         $kpeg = $kpegawai;
-        $data = [
-            'side' => "c_pinjam",
-            'tittle' => "Detail Peminjaman Barang",
-            'pegawai' => $this->pegawaiModel->getPegawai($kpeg),
-            'pinjam' => $this->pinjamModel->getDetPinjam($slug),
-            'validation' => \Config\Services::validation()
-        ];
-        return view('pinjam/cetak', $data);
-    }
+        $pegawai = $this->pegawaiModel->getPegawai($kpeg);
+        $pinjam = $this->pinjamModel->getDetPinjam($slug);
 
-    public function generate($slug)
-    {
-        $qlok = $this->pinjamModel->getDetPinjam($slug);
-        foreach ($qlok as $k) {
-            $kpegawai = $k['kode_pegawai'];
+        $pdf = new FPDF('L', 'mm', 'A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Cell(0, 7, 'DATA PEMINJAMAN ASET', 0, 1, 'C'); //panjang 277
+        $pdf->Cell(10, 7, '', 0, 1);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->Cell(10, 6, '', 0, 0, 'C');
+        $pdf->Cell(30, 6, 'Kode Pinjam', 0, 0, 'L');
+        $pdf->Cell(90, 6, ": " . $k['kode_pinjam'], 0, 0, 'L');
+        $pdf->Cell(30, 6, '', 0, 0, 'L');
+        $pdf->Cell(32, 6, 'Tgl Pinjam', 0, 0, 'L');
+        $pdf->Cell(90, 6, ": " . $k['tgl_pinjam'], 0, 1, 'L');
+        $pdf->Cell(10, 6, '', 0, 0, 'C');
+        $pdf->Cell(30, 6, 'Nama Peminjam', 0, 0, 'L');
+        $pdf->Cell(90, 6, ": " . $k['nama_pegawai'], 0, 0, 'L');
+        $pdf->Cell(30, 6, '', 0, 0, 'L');
+        $pdf->Cell(32, 6, 'Tgl Jatuh Tempo', 0, 0, 'L');
+        $pdf->Cell(90, 6, ": " . $k['tgl_jatuh_tempo'], 0, 1, 'L');
+        $pdf->Cell(10, 6, '', 0, 0, 'C');
+        $pdf->Cell(30, 6, 'Nama Petugas', 0, 0, 'L');
+        $pdf->Cell(90, 6, ": " . $k['username'], 0, 0, 'L');
+        $pdf->Cell(30, 6, '', 0, 0, 'L');
+        $pdf->Cell(32, 6, 'Status', 0, 0, 'L');
+        $pdf->Cell(90, 6, ": " . $k['status'], 0, 1, 'L');
+
+        $pdf->Ln();
+        $pdf->Cell(10, 6, '', 0, 0, 'C');
+        $pdf->Cell(27, 6, 'ID Brg', 1, 0, 'C');
+        $pdf->Cell(50, 6, 'Kode Barang', 1, 0, 'C');
+        $pdf->Cell(90, 6, 'Nama Barang', 1, 0, 'C');
+        $pdf->Cell(40, 6, 'Merk', 1, 0, 'C');
+        $pdf->Cell(40, 6, 'Type', 1, 0, 'C');
+        $pdf->Cell(10, 6, 'Qty', 1, 1, 'C');
+        $pdf->SetFont('Arial', '', 10);
+        foreach ($pinjam as $p) {
+            $pdf->Cell(10, 6, '', 0, 0, 'C');
+            $pdf->Cell(27, 6, $p['id_barang'], 1, 0, 'C');
+            $pdf->Cell(50, 6, $p['kode_barang'], 1, 0);
+            $pdf->Cell(90, 6, $p['nama_barang'], 1, 0);
+            $pdf->Cell(40, 6, $p['merk'], 1, 0);
+            $pdf->Cell(40, 6, $p['type'], 1, 0);
+            $pdf->Cell(10, 6, $p['jumlah'], 1, 1, 'C');
         }
-        $kpeg = $kpegawai;
-        $data = [
-            'pegawai' => $this->pegawaiModel->getPegawai($kpeg),
-            'pinjam' => $this->pinjamModel->getDetPinjam($slug),
-            'validation' => \Config\Services::validation()
-        ];
-
-        $filename = date('y-m-d-H-i-s') . '-qadr-labs-report';
-
-        // instantiate and use the dompdf class
-        $dompdf = new Dompdf();
-
-        // load HTML content
-        $dompdf->loadHtml(view('pinjam/print', $data));
-
-        // (optional) setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
-
-        // render html as PDF
-        $dompdf->render();
-
-        // output the generated pdf
-        $dompdf->stream($filename);
-    }
-
-    public function print($slug) //untuk tes
-    {
-        $qlok = $this->pinjamModel->getDetPinjam($slug);
-        foreach ($qlok as $k) {
-            $kpegawai = $k['kode_pegawai'];
-        }
-        $kpeg = $kpegawai;
-        $data = [
-            'pegawai' => $this->pegawaiModel->getPegawai($kpeg),
-            'pinjam' => $this->pinjamModel->getDetPinjam($slug),
-            'validation' => \Config\Services::validation()
-        ];
-
-        return view('pinjam/print', $data);
+        $this->response->setHeader('Content-Type', 'application/pdf');
+        $pdf->Output('I');
     }
 }

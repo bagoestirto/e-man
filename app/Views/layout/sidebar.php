@@ -36,7 +36,7 @@
                             <a href="<?= base_url('/mpinjam/l_pinjam'); ?>" class="sidebar-link"><i class="fas fa-arrow-alt-circle-up"></i><span class="hide-menu"> Peminjaman </span></a>
                         </li>
                         <li class="sidebar-item <?= ($side == 'c_kembali') ? 'active' : ''; ?>">
-                            <a href="<?= base_url('/mkembali/l_kembali'); ?>" class="sidebar-link"><i class="fas fa-arrow-alt-circle-down"></i><span class="hide-menu"> Pengembalian </span></a>
+                            <a href="<?= base_url('/mpinjam/l_kembali'); ?>" class="sidebar-link"><i class="fas fa-arrow-alt-circle-down"></i><span class="hide-menu"> Pengembalian </span></a>
                         </li>
                     </ul>
                 </li>
