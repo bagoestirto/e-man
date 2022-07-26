@@ -25,7 +25,7 @@ class Dropdown extends BaseController
     {
         $id_barang = $this->request->getVar("id_barang");
 
-        $states = $this->db->query("SELECT kode_barang, sum(qty) as qty from tb_detail_lokasi where kode_barang = " . $id_barang)->getFirstRow();
+        $states = $this->db->query("SELECT kode_barang as id_barang, sum(qty) as stok_barang from tb_detail_lokasi where kode_barang = " . $id_barang)->getFirstRow();
 
         return json_encode($states);
     }
