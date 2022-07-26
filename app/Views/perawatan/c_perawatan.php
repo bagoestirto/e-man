@@ -22,22 +22,25 @@
                     <div class="form-group row after-add-more">
                         <label for="nbar" class="col-sm-3 text-end control-label col-form-label">Nama Barang</label>
                         <div class="col-sm-3">
-                            <select class="opt-barang select2 form-select shadow-none" id="pbarper[]" name="nbarper[]" required>
+                            <select onchange="getJumlah(this, 1, 'perawatan')" class="opt-barang select2 form-select shadow-none" id="pbarper[]" name="nbarper[]" required>
                                 <option value="">Pilih Barang</option>
                                 <?php foreach ($barang as $bar) : ?>
-                                    <option onclick="getJumlahPer(<?= $bar['id_barang'] ?>, 1)" value="<?= $bar['id_barang'] ?>"><?= $bar['nama_barang']; ?></option>
+                                    <option value="<?= $bar['id_barang'] ?>"><?= $bar['nama_barang']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="col-sm-3">
-                            <select class="select2 form-select shadow-none" id="qbarper_1" name="qbarper[]" required>
+                            <select class="select2 form-select shadow-none" id="qbar_1" name="qbarper[]" required>
 
                             </select>
                         </div>
                     </div>
 
-                    <div class="row before-here-per">
-                        <div class="col-sm-3"> </div><button class="btn btn-success add-more-per col-sm-1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                    <div class="row before-here">
+                        <div class="col-sm-3"> </div>
+                        <button class="btn btn-success add-more col-sm-1" type="button" data-type="perawatan">
+                            <i class="glyphicon glyphicon-plus"></i> Add
+                        </button>
                     </div>
 
                 </div>

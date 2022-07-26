@@ -41,10 +41,10 @@
                     <div class="form-group row after-add-more">
                         <label for="nbar" class="col-sm-3 text-end control-label col-form-label">Nama Barang</label>
                         <div class="col-sm-3">
-                            <select class="opt-barang select2 form-select shadow-none" id="pbar[]" name="nbar[]" required>
+                            <select onchange="getJumlah(this, 1)" class="opt-barang select2 form-select shadow-none" id="pbar[]" name="nbar[]" required>
                                 <option value="">Pilih Barang</option>
                                 <?php foreach ($barang as $bar) : ?>
-                                    <option onclick="getJumlah(<?= $bar['id_barang'] ?>, 1)" value="<?= $bar['id_barang'] ?>"><?= $bar['nama_barang']; ?></option>
+                                    <option value="<?= $bar['id_barang'] ?>"><?= $bar['nama_barang']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

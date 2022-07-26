@@ -139,15 +139,16 @@
             //     var html = $(".copy").html();
             //     $(".before-here").before(html);
             // });
-            $(".add-more").click(function() {
+            $(".add-more").click(function(e) {
+                let type = "'" + this.dataset.type + "'";
                 let count = document.getElementsByClassName("opt-barang").length + 1;
                 var html = '';
                 html += '<?php if (!empty($barang)) { ?>';
                 html += '<div class="form-group row"><label for="nbar" class="col-sm-3 text-end control-label col-form-label">Nama Barang</label>';
                 html += '<div class="col-sm-3">';
-                html += '<select class="opt-barang select2 form-select shadow-none" id="pbar[]" name="nbar[]" required>';
+                html += '<select onchange="getJumlah(this, ' + count + ', ' + type + ')" class="opt-barang select2 form-select shadow-none" id="pbar[]" name="nbar[]" required>';
                 html += '<option value="">Pilih Barang</option><?php foreach ($barang as $bar) : ?>';
-                html += '<option onclick="getJumlah(<?= $bar['id_barang'] ?>, ' + count + ')" value="<?= $bar['id_barang'] ?>"><?= $bar['nama_barang']; ?></option><?php endforeach; ?>';
+                html += '<option value="<?= $bar['id_barang'] ?>"><?= $bar['nama_barang']; ?></option><?php endforeach; ?>';
                 html += '</select>';
                 html += '</div>';
                 html += '<div class="col-sm-3">';
@@ -168,13 +169,14 @@
     </script>
     <script type=text/javascript>
         // when country dropdown changes
-        function getJumlah(item, idx) {
+        function getJumlah(item, idx, type = 'lokasi') {
+            var ikiUrl = (type == 'perawatan') ? "<?= base_url('getPerDrop') ?>" : "<?= base_url('getState') ?>";
             if (item) {
                 $.ajax({
                     type: "GET",
-                    url: "<?= base_url('getState') ?>",
+                    url: ikiUrl,
                     data: {
-                        id_barang: item
+                        id_barang: item.value
                     },
                     success: function(res) {
                         var data = JSON.parse(res);
@@ -182,7 +184,7 @@
                             $(`#qbar_${idx}`).empty();
                             $(`#qbar_${idx}`).append('<option>Jumlah Barang</option>');
                             for (let i = 1; i <= data.stok_barang; i++) {
-                                // console.log(i);
+                                console.log(i);
                                 $(`#qbar_${idx}`).append('<option value="' + i + '">' + i + '</option>');
                             }
                             // $.each(data, function(key, value) {
@@ -199,33 +201,33 @@
             }
         }
 
-        $('#pbar').change(function() {
-            var idBarang = $(this).val();
-            if (idBarang) {
-                $.ajax({
-                    type: "GET",
-                    url: "<?= base_url('getState') ?>",
-                    data: {
-                        id_barang: idBarang
-                    },
-                    success: function(res) {
-                        var data = JSON.parse(res);
-                        if (res) {
-                            $("#qbar").empty();
-                            $("#qbar").append('<option>Jumlah Barang</option>');
-                            $.each(data, function(key, value) {
-                                $("#qbar").append('<option value="' + value.stok_barang + '">' + value.stok_barang +
-                                    '</option>');
-                            });
-                        } else {
-                            $("#qbar").empty();
-                        }
-                    }
-                });
-            } else {
-                $("#qbar").empty();
-            }
-        });
+        // $('#pbar').change(function() {
+        //     var idBarang = $(this).val();
+        //     if (idBarang) {
+        //         $.ajax({
+        //             type: "GET",
+        //             url: "<?= base_url('getState') ?>",
+        //             data: {
+        //                 id_barang: idBarang
+        //             },
+        //             success: function(res) {
+        //                 var data = JSON.parse(res);
+        //                 if (res) {
+        //                     $("#qbar").empty();
+        //                     $("#qbar").append('<option>Jumlah Barang</option>');
+        //                     $.each(data, function(key, value) {
+        //                         $("#qbar").append('<option value="' + value.stok_barang + '">' + value.stok_barang +
+        //                             '</option>');
+        //                     });
+        //                 } else {
+        //                     $("#qbar").empty();
+        //                 }
+        //             }
+        //         });
+        //     } else {
+        //         $("#qbar").empty();
+        //     }
+        // });
     </script>
 
     <!--untuk halaman perawatan-->
