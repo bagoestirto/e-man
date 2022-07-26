@@ -14,7 +14,7 @@
                     <div class="form-group row">
                         <label for="nlok" class="col-sm-3 text-end control-label col-form-label">Tanggal Perawatan</label>
                         <div class="col-sm-9">
-                            <input required value="<?= old('tglPer'); ?>" type="text" class="form-control text-muted <?= ($validation->hasError('tglPer')) ? 'is-invalid' : ''; ?>" id="datepicker-autoclose" name="tglPer" placeholder="yyyy-mm-dd" />
+                            <input required value="<?= old('tglPer'); ?>" type="text" class="form-control text-muted <?= ($validation->hasError('tglPer')) ? 'is-invalid' : ''; ?>" id="datepicker-autoclose" name="tglPer" placeholder="yyyy-mm-dd" autocomplete="off" />
                             <div class="invalid-feedback"><?= $validation->getError('tglPer'); ?></div>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
                     <div class="form-group row after-add-more">
                         <label for="nbar" class="col-sm-3 text-end control-label col-form-label">Nama Barang</label>
                         <div class="col-sm-3">
-                            <select onchange="getJumlah(this, 1, 'perawatan')" class="opt-barang select2 form-select shadow-none" id="pbarper[]" name="nbarper[]" required>
+                            <select onchange="getJumlah(this, 1, 'perawatan')" class="opt-barang select2 form-select shadow-none" id="pbar[]" name="nbar[]" required>
                                 <option value="">Pilih Barang</option>
                                 <?php foreach ($barang as $bar) : ?>
                                     <option value="<?= $bar['id_barang'] ?>"><?= $bar['nama_barang']; ?></option>
@@ -30,7 +30,7 @@
                             </select>
                         </div>
                         <div class="col-sm-3">
-                            <select class="select2 form-select shadow-none" id="qbar_1" name="qbarper[]" required>
+                            <select class="select2 form-select shadow-none" id="qbar_1" name="qbar[]" required>
 
                             </select>
                         </div>
