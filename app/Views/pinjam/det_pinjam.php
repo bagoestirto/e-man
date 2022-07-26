@@ -97,7 +97,7 @@
                 <div class="text-end">
                     <div class="card-body">
                         <?php if ($halaman == 'det_pinjam') { ?>
-                            <a class="btn btn-primary btn-bg text-white" target="_blank" href="<?= base_url('/mpinjam/generate/' . $pinjami['kode_pinjam']); ?>">
+                            <a class="btn btn-primary btn-bg text-white" target="_blank" href="<?= base_url('/mpinjam/cetak/' . $pinjami['kode_pinjam']); ?>">
                                 <i class="fas fa-print"></i> Print PDF
                             </a>
                         <?php } else { ?>

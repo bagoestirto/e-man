@@ -57,13 +57,13 @@ class Mperawatan extends BaseController
         ];
         $this->transModel->insave('tb_perawatan', $data);
 
-        $qtyBar = $this->request->getVar('nbarper');
+        $qtyBar = $this->request->getVar('nbar');
         $totbar = count($qtyBar);
         for ($i = 0; $i < $totbar; $i++) {
             $databar = [
                 'kode_perawatan' => $this->request->getVar('kode_perawatan'),
-                'kode_barang' => $this->request->getVar('nbarper[' . $i . ']'),
-                'qty' => $this->request->getVar('qbarper[' . $i . ']'),
+                'kode_barang' => $this->request->getVar('nbar[' . $i . ']'),
+                'qty' => $this->request->getVar('qbar[' . $i . ']'),
                 'status' => 'proses',
             ];
             $this->transModel->insave('tb_detail_perawatan', $databar);
