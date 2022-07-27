@@ -53,7 +53,7 @@
                                     <td><?= $p['kondisi']; ?></td>
                                     <td><?= $p['harga']; ?></td>
                                     <td>
-                                        <a class="btn btn-success btn-sm text-white" title="Edit" href="<?= base_url('/mbarang/edit/' . $p['slug_barang']); ?>">
+                                        <a class="btn btn-success btn-sm text-white" title="Edit" href="<?= base_url('/mbarang/edit/' . $p['id_barang']); ?>">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         <form action="/mbarang/<?= $p['id_barang']; ?>" method="POST" class="d-inline">

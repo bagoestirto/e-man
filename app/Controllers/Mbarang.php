@@ -95,7 +95,7 @@ class Mbarang extends BaseController
             'side' => "e_barang",
             'tittle' => "Edit Barang",
             'validation' => \Config\Services::validation(),
-            'barang' => $this->barangModel->getBarang($slug)
+            'barangMaster' => $this->barangModel->getBarang($slug)
         ];
         return view('mastering/e_barang', $data);
     }
