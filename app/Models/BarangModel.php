@@ -25,4 +25,10 @@ class BarangModel extends Model
         $array = ['stok_barang >' => 0, 'jenis_barang' => 'ASET TETAP'];
         return $this->where($array)->findAll();
     }
+
+    public function getBarangPrint($jenBar)
+    {
+        $array = ['jenis_barang' => $jenBar];
+        return $this->where($array)->findAll();
+    }
 }

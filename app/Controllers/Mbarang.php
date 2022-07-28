@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\BarangModel;
 use CodeIgniter\Validation\StrictRules\Rules;
 use Kint\Parser\FsPathPlugin;
+use App\ThirdParty\FPDF\fpdf;
+
 
 class Mbarang extends BaseController
 {
@@ -100,6 +102,47 @@ class Mbarang extends BaseController
         return view('mastering/e_barang', $data);
     }
 
+    public function a_barang()
+    {
+        //session();// pindahkan ke base controller
+        $data = [
+            'side' => "e_barang",
+            'tittle' => "Tambah Stok Barang",
+            'validation' => \Config\Services::validation(),
+            'barangStok' => $this->barangModel->getBarang()
+        ];
+        return view('mastering/a_barang', $data);
+    }
+
+    public function u_stok()
+    {
+        if (!$this->validate([
+            'plusStok' => [
+                'rules' => 'numeric',
+                'errors' => [
+                    'numeric' => 'Harga hanya boleh diisi dengan angka'
+                ]
+            ]
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->to('/mbarang/a_barang/')->withInput()->with('validation', $validation);
+        }
+
+        $data_lama = $this->barangModel->getBarang($this->request->getVar('id_barang'));
+        $stokLama = $data_lama['stok_barang'];
+        $stokBaru = $stokLama + $this->request->getVar('plusStok');
+
+        echo $stokLama . " + " . $this->request->getVar('plusStok') . " = " . $stokBaru;
+
+        $this->barangModel->save([
+            'id_barang' => $this->request->getVar('id_barang'),
+            'stok_barang' => $stokBaru,
+        ]);
+
+        session()->setFlashdata('pesan', 'Data stok berhasil ditambahkan.');
+        return redirect()->to(base_url('/mbarang/l_barang'));
+    }
+
     public function update($id_barang)
     {
         $data_lama = $this->barangModel->getBarang($this->request->getVar('slug_barang'));
@@ -144,5 +187,39 @@ class Mbarang extends BaseController
 
         session()->setFlashdata('pesan', 'Data berhasil diubah.');
         return redirect()->to(base_url('/mbarang/l_barang'));
+    }
+
+    public function printBarang()
+    {
+        $query = $this->barangModel->getBarangPrint($this->request->getVar('jenis_barang'));
+
+        $pdf = new FPDF('L', 'mm', 'A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Cell(0, 7, 'DATA BARANG ' . strtoupper($this->request->getVar('jenis_barang')), 0, 1, 'C'); //panjang 277
+        $pdf->Cell(10, 7, '', 0, 1);
+        $pdf->SetFont('Arial', 'B', 10);
+
+        $pdf->Ln();
+        $pdf->Cell(7, 6, 'No', 1, 0, 'C');
+        $pdf->Cell(50, 6, 'Kode Barang', 1, 0, 'C');
+        $pdf->Cell(90, 6, 'Nama Barang', 1, 0, 'C');
+        $pdf->Cell(40, 6, 'Merk', 1, 0, 'C');
+        $pdf->Cell(30, 6, 'Kondisi', 1, 0, 'C');
+        $pdf->Cell(40, 6, 'Harga', 1, 0, 'C');
+        $pdf->Cell(18, 6, 'Stok', 1, 1, 'C');
+        $pdf->SetFont('Arial', '', 10);
+        $i = 1;
+        foreach ($query as $p) {
+            $pdf->Cell(7, 6, $i++, 1, 0, 'C');
+            $pdf->Cell(50, 6, $p['kode_barang'], 1, 0, 'C');
+            $pdf->Cell(90, 6, $p['nama_barang'], 1, 0);
+            $pdf->Cell(40, 6, $p['merk'], 1, 0);
+            $pdf->Cell(30, 6, $p['kondisi'], 1, 0);
+            $pdf->Cell(40, 6, number_format($p['harga']) . " ", 1, 0, 'R');
+            $pdf->Cell(18, 6, $p['stok_barang'], 1, 1, 'C');
+        }
+        $this->response->setHeader('Content-Type', 'application/pdf');
+        $pdf->Output('I');
     }
 }
