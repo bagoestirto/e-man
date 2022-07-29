@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use CodeIgniter\I18n\Time;
+
 
 class PinjamModel extends Model
 {
@@ -20,6 +22,18 @@ class PinjamModel extends Model
         }
 
         return $builder->where(['kode_pinjam' => $slug]);
+    }
+
+    public function getPinKem($slug = false)
+    {
+        $builder = $this->db->table('tb_peminjaman')
+            ->join('tb_pegawai', 'tb_peminjaman.kode_pegawai = tb_pegawai.kode_pegawai', 'LEFT')
+            ->orderBy('tb_peminjaman.kode_pinjam', 'DESC');
+        $builder = $builder->select('tb_peminjaman.*')
+            ->select('tb_pegawai.nama_pegawai')
+            ->where(['tb_peminjaman.status' => $slug]);
+
+        return $builder->get()->getResultArray();
     }
 
     public function getMaxIdPinjam()
@@ -58,8 +72,10 @@ class PinjamModel extends Model
 
     public function up_pinjam($slug)
     {
+        $myTime = new Time('now', 'Asia/Jakarta', 'en_US');
         $builder = $this->db->table('tb_peminjaman');
         $builder->set('status', 'Kembali');
+        $builder->set('tgl_kembali', $myTime->toDateString());
         $builder->where('kode_pinjam', $slug);
         $builder->update();
     }

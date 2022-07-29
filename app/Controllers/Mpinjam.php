@@ -11,6 +11,7 @@ use CodeIgniter\Validation\StrictRules\Rules;
 use Kint\Parser\FsPathPlugin;
 use CodeIgniter\I18n\Time;
 use App\ThirdParty\FPDF\fpdf;
+
 // use Dompdf\Dompdf;
 
 class Mpinjam extends BaseController
@@ -21,6 +22,7 @@ class Mpinjam extends BaseController
         $this->pinjamModel = new PinjamModel();
         $this->barangModel = new BarangModel();
         $this->pegawaiModel = new PegawaiModel();
+        $this->myTime = new Time('now', 'Asia/Jakarta', 'en_US');
     }
 
     public function l_pinjam()
@@ -52,7 +54,6 @@ class Mpinjam extends BaseController
     public function c_pinjam()
     {
         //session();// pindahkan ke base controller
-        $myTime = new Time('now', 'Asia/Jakarta', 'en_US');
         $maxIdPinjam = $this->pinjamModel->getMaxIdPinjam()->getResult();
         foreach ($maxIdPinjam as $a) {
         }
@@ -63,7 +64,7 @@ class Mpinjam extends BaseController
             'tittle' => "Tambah Peminjaman Barang",
             'barang' => $this->barangModel->getBarangNotNol(), //ambil barang aset tetap yg qty tidak 0
             'maxIdPinjam' => $maxIdPinjam,
-            'dToday' => $myTime->toDateString(),
+            'dToday' => $this->myTime->toDateString(),
             'validation' => \Config\Services::validation()
         ];
         return view('pinjam/c_pinjam', $data);
@@ -211,6 +212,53 @@ class Mpinjam extends BaseController
             $pdf->Cell(40, 6, $p['merk'], 1, 0);
             $pdf->Cell(40, 6, $p['type'], 1, 0);
             $pdf->Cell(10, 6, $p['jumlah'], 1, 1, 'C');
+        }
+        $this->response->setHeader('Content-Type', 'application/pdf');
+        $pdf->Output('I');
+    }
+
+    public function printPinKem($slug)
+    {
+        // $slug = $this->request->getVar('status');
+        $Pin = $this->pinjamModel->getPinKem($slug);
+        // $pegawai = $this->pegawaiModel->getPegawai($kpeg);
+        // $pinjam = $this->pinjamModel->getDetPinjam($slug);
+
+        $pdf = new FPDF('P', 'mm', 'A4');
+        $pdf->AddPage();
+
+        $pdf->SetFont('Arial', 'B', 14);
+        $pdf->Cell(0, 7, 'DATA BARANG ' . strtoupper(($slug == 'Keluar') ? 'PEMINJAMAN BARANG' : 'PENGEMBALIAN BARANG'), 0, 1, 'C'); //panjang 277
+
+        if ($slug == 'Keluar') {
+            $lenTgl = 30;
+        } else {
+            $lenTgl = 20;
+        }
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Ln();
+        $pdf->Cell(8, 6, 'No', 1, 0, 'C');
+        $pdf->Cell(22, 6, 'Kode Pinjam', 1, 0, 'C');
+        $pdf->Cell($lenTgl, 6, 'Tgl Pinjam', 1, 0, 'C');
+        $pdf->Cell($lenTgl, 6, 'Tgl Jth Tempo', 1, 0, 'C');
+        ($slug == 'Kembali') ? $pdf->Cell($lenTgl, 6, 'Tgl Kembali', 1, 0, 'C') : '';
+        $pdf->Cell(70, 6, 'Nama Pegawai', 1, 0, 'C');
+        $pdf->Cell(30, 6, 'Keterangan', 1, 1, 'C');
+        $pdf->SetFont('Arial', '', 8);
+        $no = 1;
+        foreach ($Pin as $p) {
+            $pdf->Cell(8, 6, $no++, 1, 0, 'C');
+            $pdf->Cell(22, 6, $p['kode_pinjam'], 1, 0, 'C');
+            $pdf->Cell($lenTgl, 6, $p['tgl_pinjam'], 1, 0);
+            $pdf->Cell($lenTgl, 6, $p['tgl_jatuh_tempo'], 1, 0);
+            if ($slug == 'Keluar') {
+                $paramTgl = $this->myTime->toDateString();
+            } else {
+                $pdf->Cell($lenTgl, 6, $p['tgl_kembali'], 1, 0);
+                $paramTgl = $p['tgl_kembali'];
+            }
+            $pdf->Cell(70, 6, $p['nama_pegawai'], 1, 0);
+            $pdf->Cell(30, 6, ($p['tgl_jatuh_tempo'] > $paramTgl) ? '' : 'Terlambat', 1, 1);
         }
         $this->response->setHeader('Content-Type', 'application/pdf');
         $pdf->Output('I');

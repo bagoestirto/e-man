@@ -12,11 +12,18 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <?php if ($halaman == 'l_pinjam') { ?>
-                    <a class="btn btn-info btn-bg text-white" href="<?= base_url('/mpinjam/c_pinjam'); ?>">
-                        <i class="far fa-address-book"></i> Tambah Peminjaman Barang
-                    </a>
-                <?php } ?>
+                <div class="row">
+                    <?php if ($halaman == 'l_pinjam') { ?>
+                        <a class="btn btn-info btn-bg text-white col-md-3" href="<?= base_url('/mpinjam/c_pinjam'); ?>">
+                            <i class="far fa-address-book"></i> Tambah Peminjaman Barang
+                        </a>
+                    <?php } ?>
+                    <form action="/mpinjam/printPinKem/<?= ($halaman == 'l_pinjam') ? 'Keluar' : 'Kembali'; ?>" method="POST" class="col-md-<?= ($halaman == 'l_pinjam') ? '9' : '12'; ?> text-end d-inline" target="_blank">
+                        <!-- <input type="hidden" value="<?= ($halaman == 'l_pinjam') ? 'Keluar' : 'Kembali'; ?>" name="status"> -->
+                        <button type="submit" class="btn btn-success text-end btn-bg text-white" tittle="Del"><i class="fas fa-print"> Print</i></button>
+                    </form>
+                </div>
+
                 <h6> </h6>
                 <h5 class="card-title">Daftar Peminjaman Semua Barang</h5>
                 <div class="table-responsive">
