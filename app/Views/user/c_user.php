@@ -51,6 +51,7 @@
                             <select class="select2 form-select shadow-none" id="jabatan" name="jabatan" required>
                                 <option value="">Pilih Jabatan</option>
                                 <option value="Admin" <?= (old('jabatan') == "Admin") ? "selected" : ""; ?>>Administrator</option>
+                                <option value="Kepala" <?= (old('jabatan') == "Sarpras") ? "selected" : ""; ?>>Sarpras</option>
                                 <option value="Kepala" <?= (old('jabatan') == "Kepala") ? "selected" : ""; ?>>Kepala</option>
                             </select>
                         </div>

@@ -259,6 +259,15 @@ class Mpinjam extends BaseController
             }
             $pdf->Cell(70, 6, $p['nama_pegawai'], 1, 0);
             $pdf->Cell(30, 6, ($p['tgl_jatuh_tempo'] > $paramTgl) ? '' : 'Terlambat', 1, 1);
+            if ($slug == 'Keluar') {
+                $detPin = $this->pinjamModel->getDetPinjam($p['kode_pinjam']);
+                foreach ($detPin as $dp) {
+                    $pdf->Cell(30, 6, '', 0, 0, 'C');
+                    $pdf->Cell(30, 6, $dp['kode_barang'], 1, 0);
+                    $pdf->Cell(60, 6, $dp['nama_barang'], 1, 0);
+                    $pdf->Cell(50, 6, 'Jumlah : ' . $dp['stok_barang'], 1, 1);
+                }
+            }
         }
         $this->response->setHeader('Content-Type', 'application/pdf');
         $pdf->Output('I');
