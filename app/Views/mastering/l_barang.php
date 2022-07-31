@@ -19,14 +19,14 @@
                     <i class="far fa-address-book"></i> Tambah Stok Barang
                 </a>
 
-                <form action="/mbarang/printBarang" method="GET" class="text-end d-inline" target="_blank">
+                <!-- <form action="/mbarang/printBarang" method="GET" class="text-end d-inline" target="_blank">
                     <select onchange="getPrint(this)" class="select2 shadow-none" name="jenis_barang" required>
                         <option value="">Pilih Barang</option>
                         <option value="Aset Tetap">Aset Tetap</option>
                         <option value="Habis Pakai">Habis Pakai</option>
                     </select>
                     <button type="submit" class="btn btn-primary btn-bg text-white" tittle="Del"><i class="fas fa-print"> Print</i></button>
-                </form>
+                </form> -->
 
                 <h6> </h6>
                 <h5 class="card-title">Daftar Semua Barang</h5>

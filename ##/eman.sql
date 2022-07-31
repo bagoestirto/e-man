@@ -11,7 +11,7 @@
  Target Server Version : 100424
  File Encoding         : 65001
 
- Date: 30/07/2022 22:06:06
+ Date: 31/07/2022 20:54:50
 */
 
 SET NAMES utf8mb4;
@@ -238,11 +238,14 @@ CREATE TABLE `tb_user`  (
   `jabatan` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_user`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
 INSERT INTO `tb_user` VALUES (1, 'bagoestirto', 'Bagus Tirto', 'Admin', '$2y$10$XQSi0HCBgBWZFQ2FZzaWQOIKJ./SqquuTkjJlvxpNO2D69XDhHeIi');
+INSERT INTO `tb_user` VALUES (3, 'admin', 'Administrator', 'Admin', '$2y$10$fTkWVsKRSmo4Fz/3lmOBcOLvEFJWDS6ZOtrJJ/Qu4UwGnE1sITjrW');
+INSERT INTO `tb_user` VALUES (4, 'sarpras', 'Sarpras', 'Sarpras', '$2y$10$G40eOfI8RsDxzWMNXhcCmO/TCwvDBZafGhyW.19HsI3FxUOE11S46');
+INSERT INTO `tb_user` VALUES (5, 'kepala', 'Kepala', 'Kepala', '$2y$10$MzBNFENWNq4MS33EvLfAwOlG27CSPhDjefREzp7jCNSbceGnE5Q4S');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -37,6 +37,7 @@
                             <select class="select2 form-select shadow-none" name="jbar" required>
                                 <option>Select</option>
                                 <option value="Aset Tetap">Aset Tetap</option>
+                                <option value="Aset Ekstrakomtabel">Aset Ekstrakomtabel</option>
                                 <option value="Habis Pakai">Habis Pakai</option>
                             </select>
                         </div>

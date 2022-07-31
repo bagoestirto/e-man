@@ -25,7 +25,6 @@
                     </li>
                 <?php } ?>
                 <?php if ((session()->get('jabatan') == "Admin") or (session()->get('jabatan') == "Sarpras")) { ?>
-
                     <li class="sidebar-item <?= ($side == 't_lokasi' or $side == 'c_lokasi' or $side == 'c_perawatan' or $side == 'c_pinjam' or $side == 'c_kembali') ? 'selected' : ''; ?>">
                         <a class="sidebar-link has-arrow waves-effect waves-dark <?= ($side == 't_lokasi' or $side == 'c_lokasi' or $side == 'c_perawatan' or $side == 'c_pinjam' or $side == 'c_kembali') ? 'active' : ''; ?>" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-book"></i><span class="hide-menu">Transaksi </span></a>
                         <ul aria-expanded="false" class="collapse first-level <?= ($side == 't_lokasi' or $side == 'c_lokasi' or $side == 'c_perawatan' or $side == 'c_pinjam' or $side == 'c_kembali') ? 'in' : ''; ?>">
@@ -40,6 +39,29 @@
                             </li>
                             <li class="sidebar-item <?= ($side == 'c_kembali') ? 'active' : ''; ?>">
                                 <a href="<?= base_url('/mpinjam/l_kembali'); ?>" class="sidebar-link"><i class="fas fa-arrow-alt-circle-down"></i><span class="hide-menu"> Pengembalian </span></a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php } ?>
+
+                <?php if ((session()->get('jabatan') == "Admin") or (session()->get('jabatan') == "Kepala")) { ?>
+                    <li class="sidebar-item <?= ($side == 't_lokasi') ? 'selected' : ''; ?>">
+                        <a class="sidebar-link has-arrow waves-effect waves-dark <?= ($side == 't_lokasi') ? 'active' : ''; ?>" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-align-justify"></i><span class="hide-menu">Laporan </span></a>
+                        <ul aria-expanded="false" class="collapse first-level <?= ($side == 't_lokasi') ? 'in' : ''; ?>">
+                            <li class="sidebar-item <?= ($side == 'c_lokasi') ? 'active' : ''; ?>">
+                                <a href="<?= base_url('/mbarang/printBarang/tetap'); ?>" target="_blank" class="sidebar-link"><i class="fas fa-map-marker-alt"></i><span class="hide-menu"> Aset Tetap </span></a>
+                            </li>
+                            <li class="sidebar-item <?= ($side == 'c_perawatan') ? 'active' : ''; ?>">
+                                <a href="<?= base_url('/mbarang/printBarang/ekstra'); ?>" target="_blank" class="sidebar-link"><i class="mdi mdi-settings"></i><span class="hide-menu"> Aset Ekstra </span></a>
+                            </li>
+                            <li class="sidebar-item <?= ($side == 'c_pinjam') ? 'active' : ''; ?>">
+                                <a href="<?= base_url('/mbarang/printBarang/habis'); ?>" target="_blank" class="sidebar-link"><i class="fas fa-eraser"></i><span class="hide-menu"> Habis Pakai </span></a>
+                            </li>
+                            <li class="sidebar-item <?= ($side == 'c_pinjam') ? 'active' : ''; ?>">
+                                <a href="<?= base_url('/mpinjam/printPinKem/Keluar'); ?>" target="_blank" class="sidebar-link"><i class="fas fa-arrow-alt-circle-up"></i><span class="hide-menu"> Peminjaman </span></a>
+                            </li>
+                            <li class="sidebar-item <?= ($side == 'c_pinjam') ? 'active' : ''; ?>">
+                                <a href="<?= base_url('/mpinjam/printPinKem/Kembali'); ?>" target="_blank" class="sidebar-link"><i class="fas fa-arrow-alt-circle-up"></i><span class="hide-menu"> Pengembalian </span></a>
                             </li>
                         </ul>
                     </li>

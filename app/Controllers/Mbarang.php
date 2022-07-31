@@ -189,14 +189,21 @@ class Mbarang extends BaseController
         return redirect()->to(base_url('/mbarang/l_barang'));
     }
 
-    public function printBarang()
+    public function printBarang($jen_bar)
     {
-        $query = $this->barangModel->getBarangPrint($this->request->getVar('jenis_barang'));
+        if ($jen_bar == 'tetap') {
+            $jenBar = 'Aset Tetap';
+        } else if ($jen_bar == 'ekstra') {
+            $jenBar = 'Aset Ekstrakomtabel';
+        } else if ($jen_bar == 'habis') {
+            $jenBar = 'Habis Pakai';
+        }
+        $query = $this->barangModel->getBarangPrint($jenBar);
 
         $pdf = new FPDF('L', 'mm', 'A4');
         $pdf->AddPage();
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Cell(0, 7, 'DATA BARANG ' . strtoupper($this->request->getVar('jenis_barang')), 0, 1, 'C'); //panjang 277
+        $pdf->Cell(0, 7, 'DATA BARANG ' . strtoupper($jenBar), 0, 1, 'C'); //panjang 277
         $pdf->Cell(10, 7, '', 0, 1);
         $pdf->SetFont('Arial', 'B', 10);
 

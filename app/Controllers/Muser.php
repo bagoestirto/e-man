@@ -97,6 +97,20 @@ class Muser extends BaseController
         return view('user/e_user', $data);
     }
 
+    public function u_pass()
+    {
+        $id_user = session()->get('id_user');
+        // echo $id_user;
+        // die;
+        $data = [
+            'side' => "c_user",
+            'tittle' => "Edit User",
+            'validation' => \Config\Services::validation(),
+            'user' => $this->userModel->getUser($id_user)
+        ];
+        return view('user/u_pass', $data);
+    }
+
     public function update()
     {
         $data_lama = $this->userModel->getUser($this->request->getVar('id_user'));
@@ -145,7 +159,57 @@ class Muser extends BaseController
             return redirect()->to(base_url('muser/l_user'));
         } else {
             $validation = \Config\Services::validation();
-            return redirect()->to('/muser/e_user')->withInput()->with('validation', $validation);
+            return redirect()->to('/muser/edit/' . $this->request->getVar('id_user'))->withInput()->with('validation', $validation);
+        }
+    }
+    public function uPass()
+    {
+        $data_lama = $this->userModel->getUser($this->request->getVar('id_user'));
+        $passLama = $data_lama['password']; //password lama dari database
+
+        $oldPass = $this->request->getVar('oldPass'); //password lama dari inputan
+
+        if (password_verify($oldPass, $passLama)) {
+            $verifyPass = 'oldPass';
+        } else {
+            $verifyPass = 'TidakCocokPassNya';
+        }
+        // echo $passLama . "<br>" . $oldPass . "<br>" . $verifyPass;
+        // die;
+        $rules = [
+            'oldPass' => [
+                'rules' =>  'matches[' . $verifyPass . ']',
+                'errors' => [
+                    'matches' => 'Passwod lama salah'
+                ]
+            ],
+            'password'      => [
+                'rules' => 'required|min_length[6]|max_length[200]',
+                'errors' => [
+                    'required' => 'Password tidak boleh kosong',
+                    'min_length' => 'Password minimal 6 huruf',
+                    'max_length' => 'Password maximal 200 huruf',
+                ]
+            ],
+            'confpassword'  => [
+                'rules' => 'matches[password]',
+                'errors' => [
+                    'matches' => 'Konfirmasi Password tidak sama'
+                ]
+            ]
+        ];
+        // dd($rules);
+        // die;
+        if ($this->validate($rules)) {
+            $data = [
+                'id_user' => $this->request->getVar('id_user'),
+                'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+            ];
+            $this->userModel->save($data);
+            return redirect()->to(base_url('/login/logout'));
+        } else {
+            $validation = \Config\Services::validation();
+            return redirect()->to('/muser/u_pass')->withInput()->with('validation', $validation);
         }
     }
 }

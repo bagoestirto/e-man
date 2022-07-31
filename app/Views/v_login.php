@@ -70,7 +70,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text bg-success text-white h-100" id="basic-addon1"><i class="mdi mdi-account fs-4"></i></span>
                   </div>
-                  <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required name="username" id="username" />
+                  <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required name="username" id="username" autofocus />
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
