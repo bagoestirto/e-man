@@ -46,7 +46,7 @@
                                 <th>Satuan</th>
                                 <th>Kondisi</th>
                                 <th>Harga</th>
-                                <th>Action</th>
+                                <?php if ($hapus == 'bukan') { ?> <th>Action</th><?php } ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,17 +65,19 @@
                                     <td><?= $p['satuan']; ?></td>
                                     <td><?= $p['kondisi']; ?></td>
                                     <td><?= $p['harga']; ?></td>
-                                    <td>
-                                        <a class="btn btn-success btn-sm text-white" title="Edit" href="<?= base_url('/mbarang/edit/' . $p['id_barang']); ?>">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <form action="/mbarang/<?= $p['id_barang']; ?>" method="POST" class="d-inline">
-                                            <?= csrf_field(); ?>
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-danger btn-sm text-white" tittle="Del" onclick="return confirm('Apakah anda yakin?')"><i class="fas fa-trash-alt"></i></button>
-                                        </form>
+                                    <?php if ($hapus == 'bukan') { ?>
+                                        <td>
+                                            <a class="btn btn-success btn-sm text-white" title="Edit" href="<?= base_url('/mbarang/edit/' . $p['id_barang']); ?>">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                            <form action="/mbarang/<?= $p['id_barang']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="btn btn-danger btn-sm text-white" tittle="Del" onclick="return confirm('Apakah anda yakin?')"><i class="fas fa-trash-alt"></i></button>
+                                            </form>
 
-                                    </td>
+                                        </td>
+                                    <?php } ?>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

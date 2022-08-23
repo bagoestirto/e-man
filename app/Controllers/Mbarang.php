@@ -6,6 +6,8 @@ use App\Models\BarangModel;
 use CodeIgniter\Validation\StrictRules\Rules;
 use Kint\Parser\FsPathPlugin;
 use App\ThirdParty\FPDF\fpdf;
+use CodeIgniter\I18n\Time;
+
 
 
 class Mbarang extends BaseController
@@ -15,6 +17,7 @@ class Mbarang extends BaseController
     public function __construct()
     {
         $this->barangModel = new BarangModel();
+        $this->myTime = new Time('now', 'Asia/Jakarta', 'en_US');
     }
 
     public function l_barang()
@@ -22,7 +25,41 @@ class Mbarang extends BaseController
         $data = [
             'side' => "l_barang",
             'tittle' => "List Barang",
+            'hapus' => "bukan",
             'barang' => $this->barangModel->getBarang()
+        ];
+        return view('mastering/l_barang', $data);
+    }
+
+    public function l_barangbaik()
+    {
+        $data = [
+            'side' => "l_barang",
+            'tittle' => "List Barang Yang Baik",
+            'hapus' => "baik",
+            'barang' => $this->barangModel->getBarangbaik()
+        ];
+        return view('mastering/l_barang', $data);
+    }
+
+    public function l_barangrusak()
+    {
+        $data = [
+            'side' => "l_barang",
+            'tittle' => "List Barang Yang Rusak",
+            'hapus' => "rusak",
+            'barang' => $this->barangModel->getBarangrusak()
+        ];
+        return view('mastering/l_barang', $data);
+    }
+
+    public function l_baranghapus()
+    {
+        $data = [
+            'side' => "l_barang",
+            'tittle' => "List Barang Yang Sudah Dihapus",
+            'hapus' => "iya",
+            'barang' => $this->barangModel->getBaranghapus()
         ];
         return view('mastering/l_barang', $data);
     }
@@ -76,7 +113,8 @@ class Mbarang extends BaseController
             'tgl_pembelian' => $this->request->getVar('tgl_beli'),
             'satuan' => $this->request->getVar('satuan'),
             'kondisi' => $this->request->getVar('kondisi'),
-            'harga' => $this->request->getVar('harga')
+            'harga' => $this->request->getVar('harga'),
+            'hapus' => 'ada'
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
@@ -85,7 +123,14 @@ class Mbarang extends BaseController
 
     public function delete($id_barang)
     {
-        $this->barangModel->delete($id_barang);
+        // $this->barangModel->delete($id_barang);
+
+        $this->barangModel->save([
+            'id_barang' => $id_barang,
+            'hapus' => 'hapus',
+            'del_at' => $this->myTime->toDateTimeString()
+        ]);
+
         session()->setFlashdata('pesan', 'Data berhasil dihapus.');
         return redirect()->to('/mbarang/l_barang');
     }
@@ -145,7 +190,7 @@ class Mbarang extends BaseController
 
     public function update($id_barang)
     {
-        $data_lama = $this->barangModel->getBarang($this->request->getVar('slug_barang'));
+        $data_lama = $this->barangModel->getBarang($id_barang);
 
         if ($data_lama['kode_barang'] == $this->request->getVar('kbar')) {
             $rule_kode = 'required';

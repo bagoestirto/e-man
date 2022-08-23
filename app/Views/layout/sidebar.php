@@ -19,7 +19,16 @@
                                 <a href="<?= base_url('/mpegawai/l_pegawai'); ?>" class="sidebar-link"><i class="mdi mdi-account-box"></i><span class="hide-menu"> Pegawai </span></a>
                             </li>
                             <li class="sidebar-item <?= ($side == 'c_barang' or $side == 'e_barang') ? 'active' : ''; ?>">
-                                <a href="<?= base_url('/mbarang/l_barang'); ?>" class="sidebar-link"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"> Barang </span></a>
+                                <a href="<?= base_url('/mbarang/l_barang'); ?>" class="sidebar-link"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"> Semua Barang </span></a>
+                            </li>
+                            <li class="sidebar-item <?= ($side == 'c_barang' or $side == 'e_barang') ? 'active' : ''; ?>">
+                                <a href="<?= base_url('/mbarang/l_barangbaik'); ?>" class="sidebar-link"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"> Barang Baik</span></a>
+                            </li>
+                            <li class="sidebar-item <?= ($side == 'c_barang' or $side == 'e_barang') ? 'active' : ''; ?>">
+                                <a href="<?= base_url('/mbarang/l_barangrusak'); ?>" class="sidebar-link"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"> Barang Rusak</span></a>
+                            </li>
+                            <li class="sidebar-item <?= ($side == 'c_barang' or $side == 'e_barang') ? 'active' : ''; ?>">
+                                <a href="<?= base_url('/mbarang/l_baranghapus'); ?>" class="sidebar-link"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"> Aset dihapus </span></a>
                             </li>
                         </ul>
                     </li>
@@ -45,9 +54,9 @@
                 <?php } ?>
 
                 <?php if ((session()->get('jabatan') == "Admin") or (session()->get('jabatan') == "Kepala")) { ?>
-                    <li class="sidebar-item <?= ($side == 't_lokasi') ? 'selected' : ''; ?>">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark <?= ($side == 't_lokasi') ? 'active' : ''; ?>" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-align-justify"></i><span class="hide-menu">Laporan </span></a>
-                        <ul aria-expanded="false" class="collapse first-level <?= ($side == 't_lokasi') ? 'in' : ''; ?>">
+                    <li class="sidebar-item ">
+                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-align-justify"></i><span class="hide-menu">Laporan </span></a>
+                        <ul aria-expanded="false" class="collapse first-level">
                             <li class="sidebar-item <?= ($side == 'c_lokasi') ? 'active' : ''; ?>">
                                 <a href="<?= base_url('/mbarang/printBarang/tetap'); ?>" target="_blank" class="sidebar-link"><i class="fas fa-map-marker-alt"></i><span class="hide-menu"> Aset Tetap </span></a>
                             </li>

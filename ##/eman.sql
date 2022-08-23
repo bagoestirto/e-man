@@ -11,7 +11,7 @@
  Target Server Version : 100424
  File Encoding         : 65001
 
- Date: 31/07/2022 20:54:50
+ Date: 23/08/2022 22:04:30
 */
 
 SET NAMES utf8mb4;
@@ -35,24 +35,28 @@ CREATE TABLE `tb_barang`  (
   `satuan` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `kondisi` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `harga` int(11) NOT NULL,
+  `hapus` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `del_at` date NULL DEFAULT NULL,
   PRIMARY KEY (`id_barang`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_barang
 -- ----------------------------
-INSERT INTO `tb_barang` VALUES (1, 'PRS/BOS/2021', 'PRS-BOS-2021', 'Printer Scan', 1, 'Aset Tetap', 'EPSON', 'L3110', '001-BOS', '2021-06-11', 'Unit', 'BAIK', 7300000);
-INSERT INTO `tb_barang` VALUES (2, 'KAD/BOS/2021', 'KAD-BOS-2021', 'Kipas Angin DInding', 1, 'Habis Pakai', 'MASPION', 'Maspion', '001-BOS', '2021-06-11', 'Unit', 'BAIK', 1700000);
-INSERT INTO `tb_barang` VALUES (3, 'SRA/BOS/2021', 'SRA-BOS-2021', 'Scanner Portable', 5, 'Aset Tetap', 'CANON', 'Epson', '001-BOS', '2021-06-11', 'Unit', 'BAIK', 4235000);
-INSERT INTO `tb_barang` VALUES (4, 'CPUKI/BOS/2021', 'CPUKI-BOS-2021', 'CPU Rakitan', 3, 'Aset Tetap', '-', 'Core i5', '001-BOS', '2021-06-11', 'Unit', 'BAIK', 15000000);
-INSERT INTO `tb_barang` VALUES (5, 'KAD/BOS/2021', 'KAD-BOS-2021', 'Kipas Angin Dinding', 2, 'Aset Tetap', 'MASPION', 'PW-501W', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 1700000);
-INSERT INTO `tb_barang` VALUES (6, 'CPURE/BOS/2021', 'CPURE-BOS-2021', 'CPU Core i5', 3, 'Aset Tetap', '-', '-', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 3750000);
-INSERT INTO `tb_barang` VALUES (7, 'MNR/BOS/2021', 'MNR-BOS-2021', 'Monitor 16\"', 1, 'Aset Tetap', '-', 'LG', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 6375000);
-INSERT INTO `tb_barang` VALUES (8, 'LTP/BOS/2021', 'LTP-BOS-2021', 'Laptop', 2, 'Aset Tetap', 'ASUS', 'K513EA-OLED321', '001-BOS', '2021-11-26', 'Unit', 'BAIK', 9850000);
-INSERT INTO `tb_barang` VALUES (9, 'MUI/BOS/2021', 'MUI-BOS-2021', 'Meja Kursi Siswa', 43, 'Aset Tetap', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 66000000);
-INSERT INTO `tb_barang` VALUES (10, 'MUG/BOS/2021', 'MUG-BOS-2021', 'Meja Kursi Guru', 6, 'Aset Tetap', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 1650000);
-INSERT INTO `tb_barang` VALUES (11, 'KGG/BOS/2021', 'KGG-BOS-2021', 'Kursi Guru', 2, 'Aset Tetap', '-', '-', '001-BOS', '2021-11-26', 'Set', 'BAIK', 2925000);
-INSERT INTO `tb_barang` VALUES (14, 'PRS/BOS/2021a', 'PRS-BOS-2021a', 'asdjk', 7, 'Aset Tetap', 'adfjk', 'asdfjk', '001-BOS', '2022-07-19', 'Pcs', 'Rusak', 4006);
+INSERT INTO `tb_barang` VALUES (1, 'PRS/BOS/2021', 'PRS-BOS-2021', 'Printer Scan', 1, 'Aset Tetap', 'EPSON', 'L3110', '001-BOS', '2021-06-11', 'Unit', 'Baik', 7300000, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (2, 'KAD/BOS/2021', 'KAD-BOS-2021', 'Kipas Angin DInding', 1, 'Habis Pakai', 'MASPION', 'Maspion', '001-BOS', '2021-06-11', 'Unit', 'Baik', 1700000, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (3, 'SRA/BOS/2021', 'SRA-BOS-2021', 'Scanner Portable', 5, 'Aset Tetap', 'CANON', 'Epson', '001-BOS', '2021-06-11', 'Unit', 'Baik', 4235000, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (4, 'CPUKI/BOS/2021', 'CPUKI-BOS-2021', 'CPU Rakitan', 3, 'Aset Tetap', '-', 'Core i5', '001-BOS', '2021-06-11', 'Unit', 'Baik', 15000000, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (5, 'KAD/BOS/2021', 'KAD-BOS-2021', 'Kipas Angin Dinding', 2, 'Aset Tetap', 'MASPION', 'PW-501W', '001-BOS', '2021-11-26', 'Unit', 'Baik', 1700000, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (6, 'CPURE/BOS/2021', 'CPURE-BOS-2021', 'CPU Core i5', 3, 'Aset Tetap', '-', '-', '001-BOS', '2021-11-26', 'Unit', 'Baik', 3750000, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (7, 'MNR/BOS/2021', 'MNR-BOS-2021', 'Monitor 16\"', 1, 'Aset Tetap', '-', 'LG', '001-BOS', '2021-11-26', 'Unit', 'Baik', 6375000, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (8, 'LTP/BOS/2021', 'LTP-BOS-2021', 'Laptop', 2, 'Aset Tetap', 'ASUS', 'K513EA-OLED321', '001-BOS', '2021-11-26', 'Unit', 'Baik', 9850000, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (9, 'MUI/BOS/2021', 'MUI-BOS-2021', 'Meja Kursi Siswa', 43, 'Aset Tetap', '-', '-', '001-BOS', '2021-11-26', 'Set', 'Baik', 66000000, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (10, 'MUG/BOS/2021', 'MUG-BOS-2021', 'Meja Kursi Guru', 6, 'Aset Tetap', '-', '-', '001-BOS', '2021-11-26', 'Set', 'Baik', 1650000, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (11, 'KGG/BOS/2021', 'KGG-BOS-2021', 'Kursi Guru', 2, 'Aset Tetap', '-', '-', '001-BOS', '2021-11-26', 'Set', 'Baik', 2925000, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (14, 'PRS/BOS/2021a', 'PRS-BOS-2021a', 'asdjklm', 7, 'Aset Tetap', 'adfjk', 'asdfjk', '001-BOS', '2022-07-19', 'Pcs', 'Rusak', 4006, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (15, 'kodeBarbar', 'kodeBarbar', 'namaapaaja', 4, 'Aset Tetap', 'asdf', 'asdf', 'Swadaya', '2022-08-17', 'Set', 'Baik', 90, 'hapus', '2022-08-23');
+INSERT INTO `tb_barang` VALUES (16, '5678', '5678', 'ghj', 9, 'Aset Tetap', 'i', 'i', '001-BOS', '2022-08-18', 'Set', 'Baik', 9, 'hapus', '2022-08-23');
 
 -- ----------------------------
 -- Table structure for tb_detail_lokasi
@@ -76,6 +80,15 @@ INSERT INTO `tb_detail_lokasi` VALUES ('14', '7', 2);
 INSERT INTO `tb_detail_lokasi` VALUES ('15', '9', 4);
 INSERT INTO `tb_detail_lokasi` VALUES ('16', '1', 1);
 INSERT INTO `tb_detail_lokasi` VALUES ('16', '2', 1);
+
+-- ----------------------------
+-- Table structure for tb_detail_pakai
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_detail_pakai`;
+CREATE TABLE `tb_detail_pakai`  (
+  `kode_pakai` int(15) NULL DEFAULT NULL,
+  `id_barang` int(10) NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for tb_detail_peminjaman
@@ -139,6 +152,18 @@ INSERT INTO `tb_lokasi` VALUES (13, ' 197609292008012017', 'tyu', 'yyu');
 INSERT INTO `tb_lokasi` VALUES (14, '196810112007012019', 'opo', 'opo');
 INSERT INTO `tb_lokasi` VALUES (15, '198306042009031004', 'hjkl;', '4567890');
 INSERT INTO `tb_lokasi` VALUES (16, '198505122010012020', 'dfghjk', '4567890');
+
+-- ----------------------------
+-- Table structure for tb_pakai
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_pakai`;
+CREATE TABLE `tb_pakai`  (
+  `kode_pakai` int(15) NOT NULL,
+  `kode_pegawai` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tgl` date NOT NULL,
+  `username` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`kode_pakai`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for tb_pegawai
@@ -246,6 +271,6 @@ CREATE TABLE `tb_user`  (
 INSERT INTO `tb_user` VALUES (1, 'bagoestirto', 'Bagus Tirto', 'Admin', '$2y$10$XQSi0HCBgBWZFQ2FZzaWQOIKJ./SqquuTkjJlvxpNO2D69XDhHeIi');
 INSERT INTO `tb_user` VALUES (3, 'admin', 'Administrator', 'Admin', '$2y$10$fTkWVsKRSmo4Fz/3lmOBcOLvEFJWDS6ZOtrJJ/Qu4UwGnE1sITjrW');
 INSERT INTO `tb_user` VALUES (4, 'sarpras', 'Sarpras', 'Sarpras', '$2y$10$G40eOfI8RsDxzWMNXhcCmO/TCwvDBZafGhyW.19HsI3FxUOE11S46');
-INSERT INTO `tb_user` VALUES (5, 'kepala', 'Kepala', 'Kepala', '$2y$10$MzBNFENWNq4MS33EvLfAwOlG27CSPhDjefREzp7jCNSbceGnE5Q4S');
+INSERT INTO `tb_user` VALUES (5, 'kepala', 'Kepala', 'Kepala', '$2y$10$bStRVKNgWZzrhKalvEX/FeCTMs7O6pqQJR67xwktfVFhHSdlceYnG');
 
 SET FOREIGN_KEY_CHECKS = 1;
