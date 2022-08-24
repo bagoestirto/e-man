@@ -27,17 +27,23 @@ class BarangModel extends Model
     }
     public function getBarangbaik()
     {
-        $array = ['hapus' => 'ada', 'kondisi' => 'Baik', 'jenis_barang' => 'ASET TETAP'];
+        $array = ['hapus' => 'ada', 'kondisi' => 'Baik', 'jenis_barang' => 'Aset Tetap'];
         return $this->where($array)->findAll();
     }
     public function getBarangrusak()
     {
-        $array = ['hapus' => 'ada', 'kondisi' => 'Rusak', 'jenis_barang' => 'ASET TETAP'];
+        $array = ['hapus' => 'ada', 'kondisi' => 'Rusak', 'jenis_barang' => 'Aset Tetap'];
         return $this->where($array)->findAll();
     }
     public function getBarangNotNol()
     {
-        $array = ['stok_barang >' => 0, 'jenis_barang' => 'ASET TETAP', 'hapus' => 'ada'];
+        $array = ['stok_barang >' => 0, 'jenis_barang' => 'Aset Tetap', 'hapus' => 'ada'];
+        return $this->where($array)->findAll();
+    }
+
+    public function getBarangHPNotNol() //habis pakai
+    {
+        $array = ['stok_barang >' => 0, 'jenis_barang' => 'Habis Pakai', 'hapus' => 'ada'];
         return $this->where($array)->findAll();
     }
 

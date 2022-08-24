@@ -11,7 +11,7 @@
  Target Server Version : 100424
  File Encoding         : 65001
 
- Date: 23/08/2022 22:04:30
+ Date: 24/08/2022 21:05:13
 */
 
 SET NAMES utf8mb4;
@@ -38,13 +38,13 @@ CREATE TABLE `tb_barang`  (
   `hapus` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `del_at` date NULL DEFAULT NULL,
   PRIMARY KEY (`id_barang`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_barang
 -- ----------------------------
 INSERT INTO `tb_barang` VALUES (1, 'PRS/BOS/2021', 'PRS-BOS-2021', 'Printer Scan', 1, 'Aset Tetap', 'EPSON', 'L3110', '001-BOS', '2021-06-11', 'Unit', 'Baik', 7300000, 'ada', NULL);
-INSERT INTO `tb_barang` VALUES (2, 'KAD/BOS/2021', 'KAD-BOS-2021', 'Kipas Angin DInding', 1, 'Habis Pakai', 'MASPION', 'Maspion', '001-BOS', '2021-06-11', 'Unit', 'Baik', 1700000, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (2, 'KAD/BOS/2021', 'KAD-BOS-2021', 'Kipas Angin DInding', 2, 'Habis Pakai', 'MASPION', 'Maspion', '001-BOS', '2021-06-11', 'Unit', 'Baik', 1700000, 'ada', NULL);
 INSERT INTO `tb_barang` VALUES (3, 'SRA/BOS/2021', 'SRA-BOS-2021', 'Scanner Portable', 5, 'Aset Tetap', 'CANON', 'Epson', '001-BOS', '2021-06-11', 'Unit', 'Baik', 4235000, 'ada', NULL);
 INSERT INTO `tb_barang` VALUES (4, 'CPUKI/BOS/2021', 'CPUKI-BOS-2021', 'CPU Rakitan', 3, 'Aset Tetap', '-', 'Core i5', '001-BOS', '2021-06-11', 'Unit', 'Baik', 15000000, 'ada', NULL);
 INSERT INTO `tb_barang` VALUES (5, 'KAD/BOS/2021', 'KAD-BOS-2021', 'Kipas Angin Dinding', 2, 'Aset Tetap', 'MASPION', 'PW-501W', '001-BOS', '2021-11-26', 'Unit', 'Baik', 1700000, 'ada', NULL);
@@ -56,7 +56,8 @@ INSERT INTO `tb_barang` VALUES (10, 'MUG/BOS/2021', 'MUG-BOS-2021', 'Meja Kursi 
 INSERT INTO `tb_barang` VALUES (11, 'KGG/BOS/2021', 'KGG-BOS-2021', 'Kursi Guru', 2, 'Aset Tetap', '-', '-', '001-BOS', '2021-11-26', 'Set', 'Baik', 2925000, 'ada', NULL);
 INSERT INTO `tb_barang` VALUES (14, 'PRS/BOS/2021a', 'PRS-BOS-2021a', 'asdjklm', 7, 'Aset Tetap', 'adfjk', 'asdfjk', '001-BOS', '2022-07-19', 'Pcs', 'Rusak', 4006, 'ada', NULL);
 INSERT INTO `tb_barang` VALUES (15, 'kodeBarbar', 'kodeBarbar', 'namaapaaja', 4, 'Aset Tetap', 'asdf', 'asdf', 'Swadaya', '2022-08-17', 'Set', 'Baik', 90, 'hapus', '2022-08-23');
-INSERT INTO `tb_barang` VALUES (16, '5678', '5678', 'ghj', 9, 'Aset Tetap', 'i', 'i', '001-BOS', '2022-08-18', 'Set', 'Baik', 9, 'hapus', '2022-08-23');
+INSERT INTO `tb_barang` VALUES (16, '5678', '5678', 'ghj', 9, 'Habis Pakai', 'i', 'i', '001-BOS', '2022-08-18', 'Set', 'Baik', 9, 'hapus', '2022-08-23');
+INSERT INTO `tb_barang` VALUES (17, 'barang', 'barang', 'barang', 15, 'Habis Pakai', 'barang', 'barang', '001-BOS', '2022-08-10', 'Unit', 'Baik', 77, 'ada', NULL);
 
 -- ----------------------------
 -- Table structure for tb_detail_lokasi
@@ -87,8 +88,14 @@ INSERT INTO `tb_detail_lokasi` VALUES ('16', '2', 1);
 DROP TABLE IF EXISTS `tb_detail_pakai`;
 CREATE TABLE `tb_detail_pakai`  (
   `kode_pakai` int(15) NULL DEFAULT NULL,
-  `id_barang` int(10) NULL DEFAULT NULL
+  `id_barang` int(10) NULL DEFAULT NULL,
+  `qty` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_detail_pakai
+-- ----------------------------
+INSERT INTO `tb_detail_pakai` VALUES (1, 16, '5');
 
 -- ----------------------------
 -- Table structure for tb_detail_peminjaman
@@ -164,6 +171,11 @@ CREATE TABLE `tb_pakai`  (
   `username` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`kode_pakai`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_pakai
+-- ----------------------------
+INSERT INTO `tb_pakai` VALUES (1, '123456', '2022-08-17', 'sarpras');
 
 -- ----------------------------
 -- Table structure for tb_pegawai

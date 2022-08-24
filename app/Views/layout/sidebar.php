@@ -35,10 +35,13 @@
                 <?php } ?>
                 <?php if ((session()->get('jabatan') == "Admin") or (session()->get('jabatan') == "Sarpras")) { ?>
                     <li class="sidebar-item <?= ($side == 't_lokasi' or $side == 'c_lokasi' or $side == 'c_perawatan' or $side == 'c_pinjam' or $side == 'c_kembali') ? 'selected' : ''; ?>">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark <?= ($side == 't_lokasi' or $side == 'c_lokasi' or $side == 'c_perawatan' or $side == 'c_pinjam' or $side == 'c_kembali') ? 'active' : ''; ?>" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-book"></i><span class="hide-menu">Transaksi </span></a>
-                        <ul aria-expanded="false" class="collapse first-level <?= ($side == 't_lokasi' or $side == 'c_lokasi' or $side == 'c_perawatan' or $side == 'c_pinjam' or $side == 'c_kembali') ? 'in' : ''; ?>">
+                        <a class="sidebar-link has-arrow waves-effect waves-dark <?= ($side == 't_lokasi' or $side == 'l_pakai' or $side == 'c_lokasi' or $side == 'c_perawatan' or $side == 'c_pinjam' or $side == 'c_kembali') ? 'active' : ''; ?>" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-book"></i><span class="hide-menu">Transaksi </span></a>
+                        <ul aria-expanded="false" class="collapse first-level <?= ($side == 't_lokasi' or $side == 'l_pakai' or $side == 'c_lokasi' or $side == 'c_perawatan' or $side == 'c_pinjam' or $side == 'c_kembali') ? 'in' : ''; ?>">
                             <li class="sidebar-item <?= ($side == 'c_lokasi' or $side == 'e_lokasi') ? 'active' : ''; ?>">
                                 <a href="<?= base_url('/mtrans/t_lokasi'); ?>" class="sidebar-link"><i class="fas fa-map-marker-alt"></i><span class="hide-menu"> Lokasi </span></a>
+                            </li>
+                            <li class="sidebar-item <?= ($side == 'l_pakai') ? 'active' : ''; ?>">
+                                <a href="<?= base_url('/mpakai/l_pakai'); ?>" class="sidebar-link"><i class="fas fa-map-marker-alt"></i><span class="hide-menu"> Pemakaian </span></a>
                             </li>
                             <li class="sidebar-item <?= ($side == 'c_perawatan') ? 'active' : ''; ?>">
                                 <a href="<?= base_url('/mperawatan/l_perawatan'); ?>" class="sidebar-link"><i class="mdi mdi-settings"></i><span class="hide-menu"> Perawatan </span></a>
