@@ -11,7 +11,7 @@
  Target Server Version : 100424
  File Encoding         : 65001
 
- Date: 24/08/2022 21:05:13
+ Date: 03/09/2022 23:51:29
 */
 
 SET NAMES utf8mb4;
@@ -54,10 +54,25 @@ INSERT INTO `tb_barang` VALUES (8, 'LTP/BOS/2021', 'LTP-BOS-2021', 'Laptop', 2, 
 INSERT INTO `tb_barang` VALUES (9, 'MUI/BOS/2021', 'MUI-BOS-2021', 'Meja Kursi Siswa', 43, 'Aset Tetap', '-', '-', '001-BOS', '2021-11-26', 'Set', 'Baik', 66000000, 'ada', NULL);
 INSERT INTO `tb_barang` VALUES (10, 'MUG/BOS/2021', 'MUG-BOS-2021', 'Meja Kursi Guru', 6, 'Aset Tetap', '-', '-', '001-BOS', '2021-11-26', 'Set', 'Baik', 1650000, 'ada', NULL);
 INSERT INTO `tb_barang` VALUES (11, 'KGG/BOS/2021', 'KGG-BOS-2021', 'Kursi Guru', 2, 'Aset Tetap', '-', '-', '001-BOS', '2021-11-26', 'Set', 'Baik', 2925000, 'ada', NULL);
-INSERT INTO `tb_barang` VALUES (14, 'PRS/BOS/2021a', 'PRS-BOS-2021a', 'asdjklm', 7, 'Aset Tetap', 'adfjk', 'asdfjk', '001-BOS', '2022-07-19', 'Pcs', 'Rusak', 4006, 'ada', NULL);
+INSERT INTO `tb_barang` VALUES (14, 'PRS/BOS/2021a', 'PRS-BOS-2021a', 'asdjklm', 1, 'Aset Tetap', 'adfjk', 'asdfjk', '001-BOS', '2022-07-19', 'Pcs', 'Baik', 4006, 'ada', NULL);
 INSERT INTO `tb_barang` VALUES (15, 'kodeBarbar', 'kodeBarbar', 'namaapaaja', 4, 'Aset Tetap', 'asdf', 'asdf', 'Swadaya', '2022-08-17', 'Set', 'Baik', 90, 'hapus', '2022-08-23');
 INSERT INTO `tb_barang` VALUES (16, '5678', '5678', 'ghj', 9, 'Habis Pakai', 'i', 'i', '001-BOS', '2022-08-18', 'Set', 'Baik', 9, 'hapus', '2022-08-23');
 INSERT INTO `tb_barang` VALUES (17, 'barang', 'barang', 'barang', 15, 'Habis Pakai', 'barang', 'barang', '001-BOS', '2022-08-10', 'Unit', 'Baik', 77, 'ada', NULL);
+
+-- ----------------------------
+-- Table structure for tb_del_aset
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_del_aset`;
+CREATE TABLE `tb_del_aset`  (
+  `id_barang` int(10) NULL DEFAULT NULL,
+  `qty` int(11) NULL DEFAULT NULL,
+  `ket` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_del_aset
+-- ----------------------------
+INSERT INTO `tb_del_aset` VALUES (14, 6, 'cvbnm');
 
 -- ----------------------------
 -- Table structure for tb_detail_lokasi

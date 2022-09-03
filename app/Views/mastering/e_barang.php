@@ -28,7 +28,7 @@
                     <div class="form-group row">
                         <label for="stok" class="col-sm-3 text-end control-label col-form-label">Stok Barang</label>
                         <div class="col-sm-9">
-                            <input required value="<?= (old('stok')) ? old('stok') : $barangMaster['stok_barang']; ?>" type="text" class="form-control <?= ($validation->hasError('stok')) ? 'is-invalid' : ''; ?>" id="stok" name="stok" placeholder="Stok Barang" />
+                            <input required readonly value="<?= (old('stok')) ? old('stok') : $barangMaster['stok_barang']; ?>" type="text" class="form-control <?= ($validation->hasError('stok')) ? 'is-invalid' : ''; ?>" id="stok" name="stok" placeholder="Stok Barang" />
                             <div class="invalid-feedback"><?= $validation->getError('stok'); ?></div>
                         </div>
                     </div>

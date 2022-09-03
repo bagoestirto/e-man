@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\BarangModel;
+use App\Models\TransModel;
 use CodeIgniter\Validation\StrictRules\Rules;
 use Kint\Parser\FsPathPlugin;
 use App\ThirdParty\FPDF\fpdf;
@@ -17,6 +18,7 @@ class Mbarang extends BaseController
     public function __construct()
     {
         $this->barangModel = new BarangModel();
+        $this->transModel = new TransModel();
         $this->myTime = new Time('now', 'Asia/Jakarta', 'en_US');
     }
 
@@ -140,11 +142,43 @@ class Mbarang extends BaseController
         //session();// pindahkan ke base controller
         $data = [
             'side' => "e_barang",
-            'tittle' => "Edit Barang",
+            'tittle' => "Hapus Aset Tetap",
             'validation' => \Config\Services::validation(),
             'barangMaster' => $this->barangModel->getBarang($slug)
         ];
         return view('mastering/e_barang', $data);
+    }
+
+    public function delaset($slug)
+    {
+        //session();// pindahkan ke base controller
+        $data = [
+            'side' => "e_barang",
+            'tittle' => "Edit Barang",
+            'validation' => \Config\Services::validation(),
+            'barangMaster' => $this->barangModel->getBarang($slug)
+        ];
+        return view('mastering/d_barang', $data);
+    }
+
+    public function confdel()
+    {
+        $datadel = [
+            'id_barang' => $this->request->getVar('id_barang'),
+            'qty' => $this->request->getVar('jumbar'),
+            'ket' => $this->request->getVar('ket')
+        ];
+        $this->transModel->insave('tb_del_aset', $datadel);
+
+        $stok_awal = $this->barangModel->getBarang($this->request->getVar('id_barang'));
+        $stok_awal = $stok_awal['stok_barang'];
+        $stok_akhir = $stok_awal - $this->request->getVar('jumbar');
+        $this->barangModel->save([
+            'id_barang' => $this->request->getVar('id_barang'),
+            'stok_barang' => $stok_akhir
+        ]);
+        session()->setFlashdata('pesan', 'Data berhasil diupdate.');
+        return redirect()->to(base_url('/mbarang/l_barang'));
     }
 
     public function a_barang()
