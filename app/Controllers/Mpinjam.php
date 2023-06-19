@@ -265,7 +265,7 @@ class Mpinjam extends BaseController
                     $pdf->Cell(30, 6, '', 0, 0, 'C');
                     $pdf->Cell(30, 6, $dp['kode_barang'], 1, 0);
                     $pdf->Cell(60, 6, $dp['nama_barang'], 1, 0);
-                    $pdf->Cell(50, 6, 'Jumlah : ' . $dp['stok_barang'], 1, 1);
+                    $pdf->Cell(50, 6, 'Jumlah : ' . $dp['jumlah'], 1, 1);
                 }
             }
         }
