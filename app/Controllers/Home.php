@@ -6,7 +6,8 @@ class Home extends BaseController
 {
     public function index()
     {
-        return view('welcome_message');
+        return view('selamat_datang');
+        // echo "apa ini";
     }
     public function noFound()
     {

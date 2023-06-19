@@ -49,7 +49,7 @@
       <div class="auth-box bg-dark border-top border-secondary" style="margin-bottom: 20px;">
         <div id="loginform">
           <div class="text-center pt-3 pb-3">
-            <span class="db"><img src="<?= base_url(); ?>/assets/images/smk.png" width="15%" alt="logo" /></span>
+            <span class="db"><a href="<?= base_url(); ?>/assets/images/smk.png"><img src="<?= base_url(); ?>/assets/images/smk.png" width="15%" alt="logo" /></a></span>
           </div>
           <?php if (session()->getFlashdata('pesan')) : ?>
             <div class="alert alert-warning" role="alert">
